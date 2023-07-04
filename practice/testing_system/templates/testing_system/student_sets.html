@@ -1,13 +1,41 @@
-<!doctype html>
-<html lang="en">
+﻿<!doctype html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Программы</title>
+    <style>
+        body {
+            background-color: #303841;
+        }
+    </style>
 </head>
 <body>
-<h1>STUDENT SETS</h1>
+    <div class="w-auto">
+        <h1 class="w-auto mx-auto flex justify-center text-5xl bold text-[#EEEEEE]">STUDENT_SETS.HTML</h1>
+    </div>
+    <div class="w-auto py-2">
+        <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
+            <div class="p-2 text-2xl text-[#3A4750]">
+                <a href="{% url 'index' %}">Вернуться на главную</a>
+            </div>
+        </button>
+    </div>
+    <div class="flex flex-col">
+        {% for program in programs %}
+        <div class="w-auto flex py-1">
+            <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
+                <div class="p-2 text-2xl text-[#3A4750]">
+                    {% with prog=1 %}
+                    <a href="{% url 'set' prog %}">{{program}}</a>
+                    {% endwith %}
+                </div>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

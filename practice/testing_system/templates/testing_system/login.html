@@ -5,9 +5,54 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Вход</title>
+    <style>
+        body {
+            background-color: #303841;
+        }
+    </style>
 </head>
 <body>
-<h1>LOGIN</h1>
+    <div class="w-auto">
+        <h1 class="w-auto mx-auto flex justify-center text-5xl bold text-[#EEEEEE]">LOGIN.HTML</h1>
+    </div>
+    <div class="w-auto">
+        <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
+            <div class="p-2 text-2xl text-[#3A4750]">
+                <a href="{% url 'index' %}">Вернуться на главную</a>
+            </div>
+        </button>
+    </div>
+    <div class="flex flex-row">
+        <div class="w-1/2 bg-[#3A4750] rounded-lg mx-3 p-2">
+            <div class="flex items-center flex-col">
+                <div class="flex w-auto">
+                    <div class="p-2 text-[#EEEEEE] bg-[#3A4750] rounded-lg">Блок для будущего входа</div>
+                </div>
+                <div class="w-auto">
+                    <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
+                        <div class="p-2 text-2xl text-[#3A4750]">
+                            <a href="{% url 'student_sets' %}">Войти</a>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="w-1/2 bg-[#3A4750] rounded-lg mx-3 p-2">
+            <div class="flex items-center flex-col">
+                <div class="flex w-auto">
+                    <div class="p-2 text-[#EEEEEE] bg-[#3A4750] rounded-lg">Блок для будущей регистрации</div>
+                </div>
+                <div class="w-auto">
+                    <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
+                        <div class="p-2 text-2xl text-[#3A4750]">
+                            <a href="{% url 'student_sets' %}">Зарегестрироваться</a>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

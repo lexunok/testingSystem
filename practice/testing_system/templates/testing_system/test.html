@@ -5,9 +5,100 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>НАЗВАНИЕ ТЕСТА</title>
+    <style>
+        body {
+            background-color: #303841;
+        }
+    </style>
 </head>
 <body>
-<h1>TEST</h1>
+    <div class="w-auto">
+        <h1 class="w-auto mx-auto flex justify-center text-5xl bold text-[#EEEEEE]">TEST.HTML</h1>
+    </div>
+    <div class="w-auto">
+        <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
+            <div class="p-2 text-2xl text-[#3A4750]">
+                {% with tests=1 %}
+                <a href="{% url 'set' tests %}">Вернуться к выбору тестов</a>
+                {% endwith %}
+            </div>
+        </button>
+    </div>
+    <div class="flex flex-col px-2">
+        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
+            <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникальньго выбора</div>
+            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
+            <div class="flex flex-col">
+                {% with itype="radio" status=1 %}
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 1</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 2</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 3</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 4</label>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
+            <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникальньго выбора</div>
+            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
+            <div class="flex flex-col">
+                {% with itype="radio" status=2 %}
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 1</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 2</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 3</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 4</label>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
+            <div class="p-2 text-2xl text-[#EEEEEE]">Пример множетсенного выбора</div>
+            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
+            <div class="flex flex-col">
+                {% with itype="checkbox" status=1 %}
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 1</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 2</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 3</label>
+                </div>
+                <div>
+                    <input type="{{itype}}" name="{{status}}" />
+                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 4</label>
+                </div>
+                {% endwith %}
+            </div>
+        </div>
+    </div>
 </body>
 </html>

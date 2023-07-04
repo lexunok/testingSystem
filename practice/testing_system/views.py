@@ -11,7 +11,8 @@ def login(request):
 
 
 def student_sets(request):
-    return render(request, 'testing_system/student_sets.html')
+    programs = ["Математический анализ","Алгебра и геометрия","Дискретная математика","Без темы"]
+    return render(request, 'testing_system/student_sets.html', context={'programs': programs})
 
 
 def set(request, set_id):
