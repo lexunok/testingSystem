@@ -11,6 +11,18 @@
         body {
             background-color: #303841;
         }
+
+
+        .path1 {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            transition: .5s all;
+        }
+
+        input:checked + label svg g path {
+            stroke-dashoffset: 0;
+        }
+ 
     </style>
 </head>
 <body>
@@ -28,74 +40,19 @@
     </div>
     <div class="flex flex-col px-2">
         <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
-            <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникальньго выбора</div>
-            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
-            <div class="flex flex-col">
-                {% with itype="radio" status=1 %}
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 1</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 2</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 3</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 4</label>
-                </div>
-                {% endwith %}
-            </div>
-        </div>
-        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
-            <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникальньго выбора</div>
-            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
-            <div class="flex flex-col">
-                {% with itype="radio" status=2 %}
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 1</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 2</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 3</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 4</label>
-                </div>
-                {% endwith %}
-            </div>
-        </div>
-        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
             <div class="p-2 text-2xl text-[#EEEEEE]">Пример множетсенного выбора</div>
             <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
             <div class="flex flex-col">
-                {% with itype="checkbox" status=1 %}
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 1</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 2</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 3</label>
-                </div>
-                <div>
-                    <input type="{{itype}}" name="{{status}}" />
-                    <label class="p-2 text-2xl text-[#EEEEEE]">ОТВЕТ 4</label>
-                </div>
+               {% include "pattern/checkbox.html" with cid=1 cvalue=2 canswer="лол ответ чека" %} 
+            </div>
+        </div>
+        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
+            <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникального выбора</div>
+            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
+            <div class="flex flex-col">
+                {% with wrname="мыодноцелое"%}
+                {% include "pattern/radio.html" with rid=2 rname=wrname rvalue=3 ranswer="лол ответ переключалки" %}
+                {% include "pattern/radio.html" with rid=3 rname=wrname rvalue=3 ranswer="лол ответ переключалки но уже 2" %}
                 {% endwith %}
             </div>
         </div>
