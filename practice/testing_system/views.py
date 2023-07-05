@@ -9,6 +9,9 @@ def index(request):
 def login(request):
     return render(request, 'testing_system/login.html')
 
+def register(request):
+    return render(request, 'testing_system/register.html')
+
 
 def student_sets(request):
     programs = ["Математический анализ","Алгебра и геометрия","Дискретная математика","Без темы"]
