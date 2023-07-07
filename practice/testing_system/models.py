@@ -9,4 +9,3 @@ class Question(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    age = models.PositiveIntegerField()

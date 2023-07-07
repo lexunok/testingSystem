@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
-
 from .forms import RegistrationForm, LoginForm
+from .models import Student
 
 
 def index(request):
@@ -32,8 +32,12 @@ def registerView(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(request, username=username, password=password)
+            student = Student(user=user)
+            group = Group.objects.get(name='student')
+            user.groups.add(group)
+            student.save()
             login(request, user)
-            return redirect('/')
+            return redirect('/home')
     else:
         form = RegistrationForm()
     return render(request, 'testing_system/register.html', {'form': form})
