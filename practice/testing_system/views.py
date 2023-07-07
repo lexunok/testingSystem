@@ -43,9 +43,15 @@ def homeView(request):
     return render(request, 'testing_system/home.html', context={'programs': programs})
 
 
-def setView(request, set_id):
-    return render(request, 'testing_system/set.html')
+def setDescriptionView(request, set_id):
+    return render(request, 'testing_system/setDescription.html')
 
 
 def testView(request, set_id, test_id):
     return render(request, 'testing_system/test.html')
+
+def testsView(request):
+    return render(request, 'testing_system/tests.html')
+
+def testDescriptionView(request):
+    return render(request, 'testing_system/testDescription.html')

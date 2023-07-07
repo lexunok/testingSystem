@@ -1,0 +1,33 @@
+body {
+    background-image: url(../../static/images/tiyuy_white.png);
+    background-size: 100% cover;
+}
+
+div {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.field {
+    background-color: rgba(124,168,255, .29);
+    color: rgba(0,0,0, .50);
+    font-weight: 500;
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+    font-size: 24px;
+    line-height: 32px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.field::placeholder {
+    color: rgba(0,0,0, .50);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 500;
+}
+
+.field:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}

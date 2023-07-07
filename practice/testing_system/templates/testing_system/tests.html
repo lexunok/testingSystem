@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 {% load static %}
 <html lang="ru">
 <head>
@@ -15,21 +15,23 @@
         body {
             background-color: #FFFFFF;
         }
+
         #header {
             height: 10%;
         }
-        #main{
+
+        #main {
             height: 90%;
         }
-        #program-button{
-            width: 49%;
-        }
+
+       
+
         div {
             font-family: 'Montserrat', sans-serif;
         }
+
         #programs-list::-webkit-scrollbar {
             width: 10px;
-            
         }
 
         #programs-list::-webkit-scrollbar-thumb {
@@ -39,7 +41,6 @@
 
         #programs-list::-webkit-scrollbar-track {
             border-radius: 10px;
-            
         }
     </style>
 </head>
@@ -47,24 +48,24 @@
     <div class="w-screen h-screen overflow-hidden">
         <div class="w-full bg-[#516EB9] flex flex-row ustify-between" id="header">
             <div class="flex items-center w-auto pl-5">
-                <img src="{% static "images/tiuyu_name.png" %}" class="py-4 select-none" />
+                <img src="{% static " images /tiuyu_name.png" %}" class="py-4 select-none" />
             </div>
             <div class="flex justify-end items-center w-full pr-10">
-                <img src="{% static "images/bell.png" %}" class="px-3 select-none" />
-                <img src="{% static "images/profile.png" %}" class="px-3 select-none" />
+                <img src="{% static " images /bell.png" %}" class="px-3 select-none" />
+                <img src="{% static " images /profile.png" %}" class="px-3 select-none" />
             </div>
         </div>
         <div class="flex flex-row" id="main">
             <div class="h-full bg-[#28448D] w-1/12 flex flex-col">
                 <form action="{% url 'home' %}" class="mt-8">
                     <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-lg flex mx-auto hover:bg-[#5066A0]">
-                        <img src="{% static "images/study_hat.png" %}" class="px-5 py-6 select-none" />
+                        <img src="{% static " images /study_hat.png" %}" class="px-5 py-6 select-none" />
                     </button>
                     <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Программы</div>
                 </form>
                 <form action="" class="mt-8">
                     <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-full flex mx-auto hover:bg-[#5066A0]">
-                        <img src="{% static "images/progress.png" %}" class="px-6 py-6 select-none" />
+                        <img src="{% static " images /progress.png" %}" class="px-6 py-6 select-none" />
                     </button>
                     <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Прогресс</div>
                 </form>
@@ -85,7 +86,7 @@
                                         </div>
                                         <div class="bg-[#28448D] h-1/5 rounded-b-[20px] w-full">
                                             <div class="flex justify-end items-center h-full w-full">
-                                                <img src="{% static "images/arrow_right.png" %}" class="w-1/12 h-1/2 select-none pr-5" />
+                                                <img src="{% static " images /arrow_right.png" %}" class="w-1/12 h-1/2 select-none pr-5" />
                                             </div>
                                         </div>
                                     </button>
