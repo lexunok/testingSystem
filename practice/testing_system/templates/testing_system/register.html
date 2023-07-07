@@ -13,6 +13,18 @@
             background-image: url(../../static/images/tiyuy_white.png);
             background-size: 100% cover;
         }
+        .field {
+            background-color: rgba(124,168,255, .29);
+            color: rgba(0,0,0, .50);
+            font-weight: 500;
+            height: 100%;
+            width: 100%;
+            border-radius: 16px;
+            font-size: 24px;
+            line-height: 32px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
     </style>
 </head>
 <body>
@@ -24,28 +36,16 @@
                     <div class="flex text-[#303030] text-4xl h-full justify-center items-center font-bold">Регистрация</div>
                 </div>
                     <div class="py-2 my-2 w-full h-1/6">
-                        <input type="text"
-                               placeholder="Имя пользователя"
-                               name="username"
-                               class="bg-[#7CA8FF]/[.29] text-[#000000]/[.50] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000]/[.50] placeholder:text-2xl placeholder:font-medium" />
+                        {{form.username}}
                     </div>
                     <div class="py-2 my-2 w-full h-1/6">
-                        <input type="text"
-                               placeholder="Email"
-                               name="email"
-                               class="bg-[#7CA8FF]/[.29] text-[#000000]/[.50] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000]/[.50] placeholder:text-2xl placeholder:font-medium" />
+                        {{form.email}}
                     </div>
                     <div class="py-2 my-2 w-full h-1/6">
-                        <input type="text"
-                               placeholder="Пароль"
-                               name="password1"
-                               class="bg-[#7CA8FF]/[.29] text-[#000000]/[.50] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000]/[.50] placeholder:text-2xl placeholder:font-medium" />
+                        {{form.password1}}
                     </div>
                     <div class="py-2 my-2 w-full h-1/6">
-                        <input type="text"
-                               placeholder="Повторите пароль"
-                               name="password2"
-                               class="bg-[#7CA8FF]/[.29] text-[#000000]/[.50] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000]/[.50] placeholder:text-2xl placeholder:font-medium" />
+                        {{form.password2}}
                     </div>
                     <div class="my-4 py-2 h-1/6">
                         <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4]/[.74] w-full h-full rounded-2xl hover:bg-[#1A4780]">
