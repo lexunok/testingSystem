@@ -5,6 +5,31 @@
     </div>
     <div class="flex justify-end items-center w-full pr-10">
         <img src="{% static "images/bell.png" %}" class="px-3 select-none" />
-        <img src="{% static "images/profile.png" %}" class="px-3 select-none" />
+        <div class="group/item">
+            <form action="{% url 'profile' %}" class="">
+                <button type="submit" class="transition duration-300 ease-in-out px-3">
+                    <img src="{% static "images/profile.png" %}" class="select-none" />
+                </button>
+            </form>
+            <div class="transition-all duration-300 mt-5 ease-in-out fixed w-auto h-auto bg-[#173FA4] invisible group-hover/item:visible group-hover/item:opacity-100 opacity-0 right-5 p-5 text-[#FFFFFF] rounded-lg">
+                <div class="flex justify-center">
+                    ИМЯ ФАМИЛИЯ
+                </div>
+                <div class="flex justify-center">
+                    <form action="{% url 'index' %}" class="">
+                        <button type="submit" class="transition duration-300 ease-in-out text-xl">
+                            <div class="flex flex-row items-center">
+                                <div class="w-1/3">
+                                    <img src="{% static "images/log_in.png" %}" class="w-full select-none" />
+                                </div>
+                                <div class="">
+                                    Выход
+                                </div>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

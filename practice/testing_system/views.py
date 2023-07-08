@@ -60,3 +60,9 @@ def testsView(request):
 
 def testDescriptionView(request):
     return render(request, 'testing_system/testDescription.html')
+
+def progressView(request):
+    return render(request, 'testing_system/progress.html')
+
+def profileView(request):
+    return render(request, 'testing_system/profile.html')

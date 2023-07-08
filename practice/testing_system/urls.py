@@ -10,4 +10,6 @@ urlpatterns = [
     path("home/sets/<int:set_id>/<int:test_id>", views.testView, name="test"),
     path("tests", views.testsView, name="tests"),
     path("testDesc", views.testDescriptionView, name="testdescription"),
+    path("progress", views.progressView, name="progress"),
+    path("profile", views.profileView, name="profile"),
 ]
