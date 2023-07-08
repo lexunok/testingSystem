@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, LoginForm
 from .models import Student
@@ -43,7 +43,8 @@ def registerView(request):
     return render(request, 'testing_system/register.html', {'form': form})
 
 def homeView(request):
-    programs = ["Математический анализ","Алгебра и геометрия","Дискретная математика","Без темы"]
+    student = request.user.student
+    programs = student.sets.all()
     return render(request, 'testing_system/home.html', context={'programs': programs})
 
 
