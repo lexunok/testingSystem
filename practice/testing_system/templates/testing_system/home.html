@@ -7,25 +7,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
+    <link rel="stylesheet" href="{% static "css/font.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Программы</title>
     <style>
-        body {
-            background-color: #FFFFFF;
-        }
-        #header {
-            height: 10%;
-        }
-        #main{
-            height: 90%;
-        }
         #program-button{
             width: 49%;
-        }
-        div {
-            font-family: 'Montserrat', sans-serif;
         }
         #programs-list::-webkit-scrollbar {
             width: 10px;
@@ -45,30 +35,9 @@
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
-        <div class="w-full bg-[#516EB9] flex flex-row ustify-between" id="header">
-            <div class="flex items-center w-auto pl-5">
-                <img src="{% static "images/tiuyu_name.png" %}" class="py-4 select-none" />
-            </div>
-            <div class="flex justify-end items-center w-full pr-10">
-                <img src="{% static "images/bell.png" %}" class="px-3 select-none" />
-                <img src="{% static "images/profile.png" %}" class="px-3 select-none" />
-            </div>
-        </div>
+        {% include "pattern/header.html" %}
         <div class="flex flex-row" id="main">
-            <div class="h-full bg-[#28448D] w-1/12 flex flex-col">
-                <form action="{% url 'home' %}" class="mt-8">
-                    <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-lg flex mx-auto hover:bg-[#5066A0]">
-                        <img src="{% static "images/study_hat.png" %}" class="px-5 py-6 select-none" />
-                    </button>
-                    <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Программы</div>
-                </form>
-                <form action="" class="mt-8">
-                    <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-full flex mx-auto hover:bg-[#5066A0]">
-                        <img src="{% static "images/progress.png" %}" class="px-6 py-6 select-none" />
-                    </button>
-                    <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Прогресс</div>
-                </form>
-            </div>
+            {% include "pattern/nav.html" %}
             <div class="w-11/12 px-10 flex flex-col py-3">
                 <div class="w-full p-4 mb-6 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none">
                     Программы

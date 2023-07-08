@@ -1,18 +1,19 @@
 <!doctype html>
-<html lang="en">
+{% load static %}
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>НАЗВАНИЕ ТЕСТА</title>
+    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
+    <link rel="stylesheet" href="{% static "css/font.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Программы</title>
     <style>
-        body {
-            background-color: #303841;
-        }
-
-
         .path1 {
             stroke-dasharray: 400;
             stroke-dashoffset: 400;
@@ -22,38 +23,33 @@
         input:checked + label svg g path {
             stroke-dashoffset: 0;
         }
- 
     </style>
 </head>
 <body>
-    <div class="w-auto">
-        <h1 class="w-auto mx-auto flex justify-center text-5xl bold text-[#EEEEEE]">TEST.HTML</h1>
-    </div>
-    <div class="w-auto">
-        <button class="transition duration-300 ease-in-out bg-[#D72323] w-auto h-auto rounded-lg hover:bg-[#CB2821]">
-            <div class="p-2 text-2xl text-[#3A4750]">
-                {% with tests=1 %}
-                <a href="{% url 'set' tests %}">Вернуться к выбору тестов</a>
-                {% endwith %}
-            </div>
-        </button>
-    </div>
-    <div class="flex flex-col px-2">
-        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
-            <div class="p-2 text-2xl text-[#EEEEEE]">Пример множетсенного выбора</div>
-            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
-            <div class="flex flex-col">
-               {% include "pattern/checkbox.html" with cid=1 cvalue=2 canswer="ответ чека" %} 
-            </div>
-        </div>
-        <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
-            <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникального выбора</div>
-            <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
-            <div class="flex flex-col">
-                {% with wrname="мыодноцелое"%}
-                {% include "pattern/radio.html" with rid=2 rname=wrname rvalue=3 ranswer="ответ переключ" %}
-                {% include "pattern/radio.html" with rid=3 rname=wrname rvalue=3 ranswer="лол ответ переключалки но уже 2" %}
-                {% endwith %}
+    <div class="w-screen h-screen overflow-hidden">
+        {% include "pattern/header.html" %}
+        <div class="flex flex-row" id="main">
+            {% include "pattern/nav.html" %}
+            <div class="w-11/12 px-10 flex flex-col py-3">
+                <div class="flex flex-col px-2">
+                    <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
+                        <div class="p-2 text-2xl text-[#EEEEEE]">Пример множетсенного выбора</div>
+                        <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
+                        <div class="flex flex-col">
+                            {% include "pattern/checkbox.html" with cid=1 cvalue=2 canswer="ответ чека" %}
+                        </div>
+                    </div>
+                    <div class="w-auto flex py-1 flex flex-col bg-[#3A4750] my-1">
+                        <div class="p-2 text-2xl text-[#EEEEEE]">Пример уникального выбора</div>
+                        <div class="p-2 text-2xl text-[#EEEEEE]">ВОПРОС</div>
+                        <div class="flex flex-col">
+                            {% with wrname="мыодноцелое"%}
+                            {% include "pattern/radio.html" with rid=2 rname=wrname rvalue=3 ranswer="ответ переключ" %}
+                            {% include "pattern/radio.html" with rid=3 rname=wrname rvalue=3 ranswer="лол ответ переключалки но уже 2" %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
