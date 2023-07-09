@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, LoginForm
@@ -22,6 +22,11 @@ def loginView(request):
     else:
         form = LoginForm()
     return render(request, 'testing_system/login.html', {'form': form})
+
+
+def logoutView(request):
+    logout(request)
+    return redirect('/')
 
 
 def registerView(request):
@@ -64,5 +69,5 @@ def testDescriptionView(request):
 def progressView(request):
     return render(request, 'testing_system/progress.html')
 
-def profileView(request):
-    return render(request, 'testing_system/profile.html')
+def authorHomeView(request):
+    return render(request, 'testing_system/authorHome.html')

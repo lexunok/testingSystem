@@ -8,12 +8,15 @@ class Student(models.Model):
 
 class Set(models.Model):
     name = models.TextField(default='')
+    description = models.TextField(default='')
     def __str__(self):
         return self.name
 
 
 class Test(models.Model):
     name = models.TextField(default='')
+    result = models.BigIntegerField(default=0)
+    countQuestions = models.BigIntegerField(default=0)
     set = models.ForeignKey(Set, on_delete=models.CASCADE)
 
 
