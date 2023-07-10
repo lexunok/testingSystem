@@ -1,0 +1,9 @@
+.path1 {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    transition: .5s all;
+}
+
+input:checked + label svg g path {
+    stroke-dashoffset: 0;
+}

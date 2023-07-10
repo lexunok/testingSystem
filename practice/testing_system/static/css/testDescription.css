@@ -1,11 +1,3 @@
-#main-header {
-    height: 10%;
-}
-
-#main-main {
-    height: 90%;
-}
-
 #main-main-header {
     height: 10%;
 }
@@ -20,17 +12,4 @@
 
 #main-main-button {
     height: 10%;
-}
-
-#try-list::-webkit-scrollbar {
-    width: 5px;
-}
-
-#try-list::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #28448D;
-}
-
-#try-list::-webkit-scrollbar-track {
-    border-radius: 5px;
 }
