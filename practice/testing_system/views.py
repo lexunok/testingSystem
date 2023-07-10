@@ -9,27 +9,34 @@ def index(request):
     return render(request, 'testing_system/index.html')
 
 
-def loginView(request):
+def login_view(request):
     if request.method == 'POST':
         form = LoginForm(data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
-            if user is not None:
+            group = user.groups.first()
+            if user and group is not None:
                 login(request, user)
-                return redirect('/home')
+                if group.name == 'author':
+                    return redirect('/author/home')
+                if group.name == 'teacher':
+                    return redirect('/teacher/home')
+                if group.name == 'student':
+                    return redirect('/student/home')
+            return redirect('/')
     else:
         form = LoginForm()
     return render(request, 'testing_system/login.html', {'form': form})
 
 
-def logoutView(request):
+def logout_view(request):
     logout(request)
     return redirect('/')
 
 
-def registerView(request):
+def register_view(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -37,37 +44,42 @@ def registerView(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(request, username=username, password=password)
-            student = Student(user=user)
-            group = Group.objects.get(name='student')
-            user.groups.add(group)
-            student.save()
             login(request, user)
-            return redirect('/home')
+            return redirect('/login')
     else:
         form = RegistrationForm()
     return render(request, 'testing_system/register.html', {'form': form})
 
-def homeView(request):
-    student = request.user.student
+
+def student_home_view(request):
+    student = Student.objects.get(user=request.user)
     programs = student.sets.all()
-    return render(request, 'testing_system/home.html', context={'programs': programs})
+    return render(request, 'testing_system/studentHome.html', context={'programs': programs})
 
 
-def setDescriptionView(request, set_id):
+def author_home_view(request):
+    return render(request, 'testing_system/authorHome.html')
+
+
+def teacher_home_view(request):
+    return render(request, 'testing_system/teacherHome.html')
+
+
+def set_description_view(request, set_id):
     return render(request, 'testing_system/setDescription.html')
 
 
-def testView(request, set_id, test_id):
+def test_view(request, set_id, test_id):
     return render(request, 'testing_system/test.html')
 
-def testsView(request):
+
+def tests_view(request):
     return render(request, 'testing_system/tests.html')
 
-def testDescriptionView(request):
+
+def test_description_view(request):
     return render(request, 'testing_system/testDescription.html')
 
-def progressView(request):
-    return render(request, 'testing_system/progress.html')
 
-def authorHomeView(request):
-    return render(request, 'testing_system/authorHome.html')
+def progress_view(request):
+    return render(request, 'testing_system/progress.html')

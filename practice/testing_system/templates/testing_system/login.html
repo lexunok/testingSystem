@@ -22,9 +22,11 @@
                     <div class="flex text-[#303030] text-4xl h-full justify-center items-center font-bold">Вход в систему</div>
                 </div>
                 <div class="py-2 w-full my-2 h-1/6">
+                    {{form.errors.username}}
                     {{form.username}}
                 </div>
                 <div class="py-2 w-full my-2 h-1/6">
+                    {{form.errors.password}}
                     {{form.password}}
                 </div>
                     <div class="my-4 py-2 h-1/6">
