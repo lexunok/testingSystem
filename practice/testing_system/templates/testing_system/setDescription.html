@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>НАЗВАНИЕ ПРОГРАММЫ</title>
+    <title>{{set.name}}</title>
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
@@ -24,13 +24,13 @@
             <div class="w-11/12 px-10 flex flex-col py-3">
                 <div class="flex flex-none items-center justify-center w-full" id="main-header">
                     <div class="w-full p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none">
-                        НАЗВАНИЕ ПРОГРАММЫ
+                        {{set.name}}
                     </div>
                 </div>
                 <div class="flex flex-row w-full" id="main-main">
                     <div class="flex flex-col w-2/3 h-full mr-5">
                         <div class="flex flex-col w-full h-3/4">
-                            <form action="{% url 'tests' %}" class="w-full">
+                            <form action="{% url 'setTests' set.id %}" class="w-full">
                                 <button type="submit" class="transition duration-300 ease-in-out w-full h-full flex flex-row bg-[#516EB9] rounded-lg hover:bg-[#5066A0]">
                                     <div class="text-[#FFFFFF] text-center text-2xl font-bold select-none p-4 w-11/12">
                                         Посмотреть все тесты по предмету
@@ -41,12 +41,13 @@
                                 </button>
                             </form>
                             <div class="flex flex-row h-full my-3">
+                                {%for test in tests%}
                                 <div class="rounded-[30px] border-[10px] border-[#516EB9] h-full w-1/2 flex flex-col mr-5">
                                     <div class="h-2/5 text-[#000000] font-bold text-5xl select-none text-center flex items-center justify-center">
-                                        Тест
+                                        {{test.name}}
                                     </div>
                                     <div class="h-2/5 font-bold select-none text-center flex flex-row justify-center items-end">
-                                        <div class="text-3xl text-[#000000] p-7">дедлайн</div><div class="text-7xl text-[#28448D] p-7">15.07</div>
+                                        <div class="text-3xl p-2 text-[#000000] ">дедлайн</div><div class=" p-2 text-6xl text-[#28448D]">{{test.deadline}}</div>
                                     </div>
                                     <div class="bg-[#516EB9] h-1/5">
                                         <div class="flex justify-end items-center h-full w-full">
@@ -54,19 +55,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rounded-[30px] border-[10px] border-[#516EB9] h-full w-1/2 flex flex-col ml-5">
-                                    <div class="h-2/5 text-[#000000] font-bold text-5xl select-none text-center flex items-center justify-center">
-                                        Тест
-                                    </div>
-                                    <div class="h-2/5 font-bold select-none text-center flex flex-row justify-center items-end">
-                                        <div class="text-3xl text-[#000000] p-8">дедлайн</div><div class="text-7xl text-[#28448D] p-8">15.07</div>
-                                    </div>
-                                    <div class="bg-[#516EB9] h-1/5">
-                                        <div class="flex justify-end items-center h-full w-full">
-                                            <img src="{% static "images/arrow_right.png" %}" class="w-1/12 h-1/3 select-none pr-5" />
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="w-full h-1/4">

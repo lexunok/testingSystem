@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>НАЗВАНИЕ ТЕСТА</title>
+    <title>{{test.name}}</title>
     <style>#main-main-right{height: 10%;}</style>
 </head>
 <body>
@@ -25,7 +25,7 @@
             <div class="w-11/12 px-10 flex flex-col py-3">
                 <div class="w-full flex flex-row flex-none items-center justify-center pr-2.5" id="main-header">
                     <div class="w-1/12">
-                        <form action="{% url 'testdescription' %}" class="w-full h-full">
+                        <form action="{% url 'testDescription' test.id%}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
                                 <div class="flex flex-row w-full h-full">
                                     <div class="flex items-center px-1">
@@ -39,7 +39,7 @@
                         </form>
                     </div>
                     <div class="p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none w-11/12">
-                        ТЕМА ТЕСТА
+                        {{test.name}}
                     </div>
                 </div>
                 <div class="w-full flex flex-row" id="main-main">
@@ -52,13 +52,10 @@
                         </div>
                     </div>
                     <div class="w-1/4 flex flex-col h-full ml-5">
-                        <div class="rounded-2xl border-[5px] border-[#28448D] w-full flex items-center justify-center text-[#000000] text-3xl font-bold select-none" id="main-main-right">
-                            Таймер
-                        </div>
                         <div class="rounded-2xl border-[5px] border-[#28448D] h-2/5 w-full flex justify-center my-8 text-[#000000] text-3xl font-bold text-center select-none">
                             Переключение по вопросам
                         </div>
-                        <form action="{% url 'testdescription' %}" id="main-main-right">
+                        <form action="{% url 'testDescription' test.id%}" id="main-main-right">
                             <button type="submit" class="rounded-2xl bg-[#28448D] w-full h-full flex items-center justify-center items-center text-[#FFFFFF] text-3xl font-bold select-none">
                                 Завершить
                             </button>

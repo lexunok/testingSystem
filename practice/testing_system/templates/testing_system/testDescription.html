@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>НАЗВАНИЕ ТЕСТА</title>
+    <title>{{test.name}}</title>
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
@@ -25,7 +25,7 @@
             <div class="w-11/12 px-10 flex flex-col py-3">
                 <div class="w-full flex flex-row flex-none items-center justify-center" id="main-header">
                     <div class="w-1/12">
-                        <form action="{% url 'tests' %}" class="w-full h-full">
+                        <form action="{% url 'setTests' test.set.id %}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
                                 <div class="flex flex-row w-full h-full">
                                     <div class="flex items-center px-1">
@@ -39,25 +39,21 @@
                         </form>
                     </div>
                     <div class="p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none w-11/12">
-                        НАЗВАНИЕ ТЕСТА
+                        {{test.name}}
                     </div>
                 </div>
                 <div class="w-full" id="main-main">
                     <div class="rounded-2xl border-[5px] border-[#28448D] h-full w-full flex flex-col items-center mb-1">
                         <div id="main-main-header">
                             <div class="h-full text-4xl font-bold text-[#000000] flex justify-center items-center">
-                                ТЕМА ТЕСТА
                             </div>
                         </div>
                         <div class="rounded-lg bg-[#516EB9] text-[#FFFFFF] text-3xl font-bold px-4 py-2 flex flex-col items-center justify-center" id="main-main-desc">
-                            <div>Попыток: ЧИСЛО</div>
-                            <div>Ограничение по времени: ЧИСЛО ВЕЛИЧИНА</div>
-                            <div>Вопросов: ЧИСЛО</div>
-                            <div>Доступен до: ДАТА</div>
-                            <div>Максимальный балл: ЧИСЛО</div>
+                            <div>Вопросов: {{test.countQuestions}}</div>
+                            <div>Доступен до: {{test.deadline}}</div>
                         </div>
                         <div id="main-main-button" class="w-full">
-                            <form action="{% url 'test' 1 1 %}" class="w-full h-full flex justify-center items-center">
+                            <form action="{% url 'test' test.id %}" class="w-full h-full flex justify-center items-center">
                                 <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] rounded-lg">
                                     <div class="text-[#FFFFFF] text-3xl font-bold select-none p-2">
                                         Начать
@@ -67,61 +63,17 @@
                         </div>
                         <div class="flex flex-col w-full p-4" id="main-main-table">
                             <div class="flex flex-row w-full h-1/5 flex-none pr-[0.3125rem]">
-                                <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center">Попытка</div></div>
                                 <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center">Статус</div></div>
                                 <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center">Баллы</div></div>
                                 <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center">Просмотр ответов</div></div>
                             </div>
                             <div class="overflow-scroll flex flex-col items-center w-full h-full" id="try-list">
                                 <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
+                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#516EB9] text-2xl font-bold w-7/12 h-full mx-2">{{test.status}}<div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
+                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#516EB9] text-2xl font-bold w-2/12 h-full mx-2">{{test.result}}<div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
+                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#516EB9] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
                                 </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                                <div class="flex flex-row w-full h-1/5 flex-none my-2">
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-1/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-7/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                    <div class="border-[#516EB9] border-[5px] rounded-lg text-[#FFFFFF] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center">ㅤ</div></div>
-                                </div>
-                            </div>
+                            </div>-
                         </div>
                     </div>
                 </div>

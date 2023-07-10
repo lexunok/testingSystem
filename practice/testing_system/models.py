@@ -18,7 +18,9 @@ class Set(models.Model):
 class Test(models.Model):
     name = models.TextField(default='')
     result = models.BigIntegerField(default=0)
+    status = models.TextField(default='Не пройден')
     countQuestions = models.BigIntegerField(default=0)
+    deadline = models.CharField(null=True, max_length=10)
     set = models.ForeignKey(Set, on_delete=models.CASCADE, null=True)
 
 

@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, LoginForm
-from .models import Student
+from .models import Student, Set, Test
 
 
 def index(request):
@@ -66,19 +66,37 @@ def teacher_home_view(request):
 
 
 def set_description_view(request, set_id):
-    return render(request, 'testing_system/setDescription.html')
+    set = Set.objects.get(id=set_id)
+    tests = Test.objects.filter(set=set).order_by('deadline')[0:2].all()
+    return render(request, 'testing_system/setDescription.html', context={'set': set,'tests':tests})
 
 
-def test_view(request, set_id, test_id):
-    return render(request, 'testing_system/test.html')
+def test_view(request, test_id):
+    test = Test.objects.get(id=test_id)
+    return render(request, 'testing_system/test.html',context={'test':test})
 
 
-def tests_view(request):
-    return render(request, 'testing_system/tests.html')
+def set_tests_view(request, set_id):
+    set = Set.objects.get(id=set_id)
+    tests = Test.objects.filter(set=set).all()
+    return render(request, 'testing_system/setTests.html', context={'set': set,'tests':tests})
 
 
-def test_description_view(request):
-    return render(request, 'testing_system/testDescription.html')
+def test_description_view(request, test_id):
+    test = Test.objects.get(id=test_id)
+    return render(request, 'testing_system/testDescription.html',context={'test':test})
+
+
+def test_new_view(request):
+    return render(request, 'testing_system/testNew.html')
+
+
+def test_created_view(request):
+    return render(request, 'testing_system/testCreated.html')
+
+
+def test_form_view(request):
+    return render(request, 'testing_system/testForm.html')
 
 
 def progress_view(request):
