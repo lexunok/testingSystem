@@ -42,19 +42,23 @@
                             </form>
                             <div class="flex flex-row h-full my-3">
                                 {%for test in tests%}
-                                <div class="rounded-[30px] border-[10px] border-[#516EB9] h-full w-1/2 flex flex-col mr-5">
-                                    <div class="h-2/5 text-[#000000] font-bold text-5xl select-none text-center flex items-center justify-center">
-                                        {{test.name}}
-                                    </div>
-                                    <div class="h-2/5 font-bold select-none text-center flex flex-row justify-center items-end">
-                                        <div class="text-3xl p-2 text-[#000000] ">дедлайн</div><div class=" p-2 text-6xl text-[#28448D]">{{test.deadline}}</div>
-                                    </div>
-                                    <div class="bg-[#516EB9] h-1/5">
-                                        <div class="flex justify-end items-center h-full w-full">
-                                            <img src="{% static "images/arrow_right.png" %}" class="w-1/12 h-1/3 select-none pr-5" />
+                                <form action="{% url 'testDescription' test.id %}" class="w-1/2 p-2">
+                                    <button type="submit" class="transition duration-300 ease-in-out rounded-[30px] border-[10px] border-[#516EB9] hover:border-[#5066A0] hover:text-slate-500 h-full w-full flex flex-col group/edit">
+                                        <div class="w-full h-full">
+                                            <div class="h-2/5 text-[#000000] font-bold text-5xl select-none text-center flex items-center justify-center">
+                                                {{test.name}}
+                                            </div>
+                                            <div class="h-2/5 font-bold select-none text-center flex flex-row justify-center items-end">
+                                                <div class="text-2xl p-2 text-[#000000] ">дедлайн</div><div class=" p-2 text-4xl text-[#28448D]">{{test.deadline}}</div>
+                                            </div>
+                                            <div class="bg-[#516EB9] h-1/5 transition duration-300 ease-in-out group-hover/edit:bg-[#5066A0]">
+                                                <div class="flex justify-end items-center h-full w-full">
+                                                    <img src="{% static "images/arrow_right.png" %}" class="w-1/12 h-1/3 select-none pr-5" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </button>
+                                </form>
                                 {% endfor %}
                             </div>
                         </div>

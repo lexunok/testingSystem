@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static "css/font.css" %}" />
     <link rel="stylesheet" href="{% static "css/chedio.css" %}" />
     <link rel="stylesheet" href="{% static "css/scroll_5px.css" %}" />
+    <link rel="stylesheet" href="{% static "css/questionForm.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -31,6 +32,13 @@
         #formheader {
             height: 8%;
         }
+        #ccwidth {
+            width: 20%;
+        }
+
+        #ctwidth {
+            width: 80%;
+        }
     </style>
 </head>
 <body>
@@ -41,7 +49,7 @@
             <div class="w-11/12 px-10 flex flex-col py-5">
                 <div class="w-full flex flex-row  flex-none pr-2.5 " id="main-header">
                     <div class="w-1/12 h-1/2">
-                        <form action="{% url 'testCreated' %}" class="w-full h-full">
+                        <form action="{% url 'testCreated' 1 %}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
                                 <div class="flex flex-row w-full h-full">
                                     <div class="flex items-center px-1">
@@ -76,17 +84,17 @@
                                 Текст вопроса
                             </div>
                             <div class="w-2/3 ml-4">
-                                <textarea class="resize-none border-[#28448D] border-[5px] text-[#000000] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000] placeholder:text-2xl placeholder:font-medium"></textarea>
+                                <textarea class="testquestion"></textarea>
                             </div>
                         </div>
-                        <div class="flex flex-row py-1" id="answer">
+                        <div class="flex flex-row py-1 w-full" id="answer">
                             <div class="w-1/2 mr-4">
                                 <input type="text"
                                        placeholder="Вариант ответа"
                                        name="testdate"
-                                       class="border-[#28448D] border-[5px] text-[#000000] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000] placeholder:text-2xl placeholder:font-medium placeholder:text-center focus:placeholder:text-transparent" />
+                                       class="testanswer" />
                             </div>
-                            <div class="flex items-center">
+                            <div class="flex items-center w-1/2">
                                 {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
@@ -95,9 +103,9 @@
                                 <input type="text"
                                        placeholder="Вариант ответа"
                                        name="testdate"
-                                       class="border-[#28448D] border-[5px] text-[#000000] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000] placeholder:text-2xl placeholder:font-medium placeholder:text-center focus:placeholder:text-transparent" />
+                                       class="testanswer" />
                             </div>
-                            <div class="flex items-center">
+                            <div class="flex items-center w-1/2">
                                 {% include "pattern/checkbox.html" with cid=2 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
@@ -106,9 +114,9 @@
                                 <input type="text"
                                        placeholder="Вариант ответа"
                                        name="testdate"
-                                       class="border-[#28448D] border-[5px] text-[#000000] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000] placeholder:text-2xl placeholder:font-medium placeholder:text-center focus:placeholder:text-transparent" />
+                                       class="testanswer" />
                             </div>
-                            <div class="flex items-center">
+                            <div class="flex items-center w-1/2">
                                 {% include "pattern/checkbox.html" with cid=3 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
@@ -117,9 +125,9 @@
                                 <input type="text"
                                        placeholder="Вариант ответа"
                                        name="testdate"
-                                       class="border-[#28448D] border-[5px] text-[#000000] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000] placeholder:text-2xl placeholder:font-medium placeholder:text-center focus:placeholder:text-transparent" />
+                                       class="testanswer" />
                             </div>
-                            <div class="flex items-center">
+                            <div class="flex items-center w-1/2">
                                 {% include "pattern/checkbox.html" with cid=4 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
@@ -128,14 +136,14 @@
                                 <input type="text"
                                        placeholder="Вариант ответа"
                                        name="testdate"
-                                       class="border-[#28448D] border-[5px] text-[#000000] font-medium h-full w-full rounded-2xl text-2xl px-6 focus:outline-none placeholder:text-[#000000] placeholder:text-2xl placeholder:font-medium placeholder:text-center focus:placeholder:text-transparent" />
+                                       class="testanswer" />
                             </div>
-                            <div class="flex items-center">
+                            <div class="flex items-center w-1/2">
                                 {% include "pattern/checkbox.html" with cid=5 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
                         <div class="w-full py-1">
-                            <form action="{% url 'testCreated' %}" class="w-full flex justify-center" id="">
+                            <form action="{% url 'testCreated' 1 %}" class="w-full flex justify-center" id="">
                                 <button type="submit" class="p-3 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-xl font-bold select-none">
                                     <div class="flex flex-row px-10">
                                         <div class="px-2 flex items-center justify-center">
