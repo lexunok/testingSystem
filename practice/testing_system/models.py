@@ -17,14 +17,20 @@ class Set(models.Model):
 
 class Test(models.Model):
     name = models.TextField(default='')
-    result = models.BigIntegerField(default=0)
-    status = models.TextField(default='Не пройден')
-    countQuestions = models.BigIntegerField(default=0)
-    deadline = models.CharField(null=True, max_length=10)
+    description = models.TextField(default='')
+    deadline = models.DateField(null=True)
     set = models.ForeignKey(Set, on_delete=models.CASCADE, null=True)
 
 
+class Result(models.Model):
+    status = models.TextField(default='Не пройден')
+    test = models.ForeignKey(Test, on_delete=models.CASCADE, null=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
+    countCorrectAnswer = models.BigIntegerField(default=0)
+
+
 class Question(models.Model):
+    countQuestion = models.BigIntegerField(default=0)
     test = models.ForeignKey(Test, on_delete=models.CASCADE, null=True)
     text = models.TextField(default='')
 
@@ -32,4 +38,5 @@ class Question(models.Model):
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     text = models.TextField(default='')
+    is_correct = models.BooleanField(default=False)
 

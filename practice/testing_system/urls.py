@@ -13,8 +13,8 @@ urlpatterns = [
     path("student/sets/desc/<int:test_id>", views.test_description_view, name="testDescription"),
     path("student/progress", views.progress_view, name="progress"),
     path("author/home", views.author_home_view, name="authorHome"),
-    path("author/test/new", views.test_new_view, name="newTest"),
-    path("author/test/created", views.test_created_view, name="testCreated"),
+    path("author/test/new", views.test_new_view, name="testNew"),
+    path("author/test/<int:test_id>", views.test_created_view, name="testCreated"),
     path("author/test/form", views.test_form_view, name="testForm"),
     path("teacher/home", views.teacher_home_view, name="teacherHome"),
 ]

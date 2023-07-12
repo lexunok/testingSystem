@@ -2,6 +2,18 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 
+from .models import Test
+
+
+class TestForm(forms.ModelForm):
+    class Meta:
+        model = Test
+        fields = ('name', 'deadline', 'description')
+        widgets = {
+            "name": forms.TextInput(attrs={"class": 'testname'}),
+            "description": forms.Textarea(attrs={"class": 'testaddition'}),
+            "deadline": forms.DateInput(attrs={"class": 'testdate','type': 'date'}),
+        }
 
 
 class LoginForm(AuthenticationForm):

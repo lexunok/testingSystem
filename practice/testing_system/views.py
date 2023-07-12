@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, TestForm
 from .models import Student, Set, Test
 
 
@@ -68,30 +68,37 @@ def teacher_home_view(request):
 def set_description_view(request, set_id):
     set = Set.objects.get(id=set_id)
     tests = Test.objects.filter(set=set).order_by('deadline')[0:2].all()
-    return render(request, 'testing_system/setDescription.html', context={'set': set,'tests':tests})
+    return render(request, 'testing_system/setDescription.html', context={'set': set, 'tests': tests})
 
 
 def test_view(request, test_id):
     test = Test.objects.get(id=test_id)
-    return render(request, 'testing_system/test.html',context={'test':test})
+    return render(request, 'testing_system/test.html', context={'test': test})
 
 
 def set_tests_view(request, set_id):
     set = Set.objects.get(id=set_id)
     tests = Test.objects.filter(set=set).all()
-    return render(request, 'testing_system/setTests.html', context={'set': set,'tests':tests})
+    return render(request, 'testing_system/setTests.html', context={'set': set, 'tests': tests})
 
 
 def test_description_view(request, test_id):
     test = Test.objects.get(id=test_id)
-    return render(request, 'testing_system/testDescription.html',context={'test':test})
+    return render(request, 'testing_system/testDescription.html', context={'test': test})
 
 
 def test_new_view(request):
-    return render(request, 'testing_system/testNew.html')
+    if request.method == 'POST':
+        form = TestForm(request.POST)
+        if form.is_valid():
+            test = form.save()
+            return redirect('/author/test/' + str(test.id))
+    else:
+        form = TestForm()
+    return render(request, 'testing_system/testNew.html', context={'form': form})
 
 
-def test_created_view(request):
+def test_created_view(request, test_id):
     return render(request, 'testing_system/testCreated.html')
 
 
