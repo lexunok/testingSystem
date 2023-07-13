@@ -108,3 +108,20 @@ def test_form_view(request):
 
 def progress_view(request):
     return render(request, 'testing_system/progress.html')
+
+def set_programs_view(request):
+    return render(request, 'testing_system/setPrograms.html')
+
+
+def program_new_view(request):
+    return render(request, 'testing_system/programNew.html')
+
+def teacher_programs_view(request):
+    return render(request, 'testing_system/setTPrograms.html')
+
+def teacher_students_view(request):
+    return render(request, 'testing_system/setStudents.html')
+
+def students_new_view(request):
+    return render(request, 'testing_system/studentNew.html')
+

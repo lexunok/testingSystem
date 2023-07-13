@@ -66,18 +66,40 @@
                         <ul class="w-full h-full overflow-y-auto" id="answer-list">
                             <li class="h-full w-full py-2 pr-1">
                                 <div class="border-[5px] border-[#28448D] h-full w-full flex flex-col p-4 rounded-xl">
-                                    <div class="h-1/6 flex flex-row relative">
+                                    <div class="flex flex-row relative" style="height:15%;">
                                         <div class="text-[#516EB9] text-2xl font-bold select-none absolute">
                                             ЧИСЛО Вопрос
                                         </div>
-                                        <div class="text-[#000000] text-2xl font-bold flex  justify-center w-full">
-                                            Текст
+                                        <div class="text-[#000000] text-2xl font-bold flex justify-center w-full text-center">
+                                            Сколько будет 2 + 2 + 2 + 2 + 2?
                                         </div>
                                     </div>
-                                    <div class="h-4/6 flex items-center justify-center">
-                                        ВОПРОСИТЕЛЬНЫЙ ВОПРОС ВОПРОСА
+                                    <div class="h-4/6 flex items-center justify-center" style="height:70%;">
+                                        {% with right_answer=2 %}
+                                        <form method="" class="w-full h-full">
+                                            <div class="h-full w-full overflow-scroll">
+                                                {% if right_answer >= 2 %}
+
+                                                {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer='0' %}
+                                                {% include "pattern/checkbox.html" with cid=2 cvalue=1 canswer='22222' %}
+                                                {% include "pattern/checkbox.html" with cid=3 cvalue=1 canswer='10' %}
+                                                {% include "pattern/checkbox.html" with cid=4 cvalue=1 canswer='12' %}
+                                                {% include "pattern/checkbox.html" with cid=5 cvalue=1 canswer='8' %}
+
+                                                {% elif right_answer == 1 %}
+
+                                                {% include "pattern/radio.html" with rid=1 rname=1 rvalue=1 ranswer='0' %}
+                                                {% include "pattern/radio.html" with rid=2 rname=1 rvalue=1 ranswer='22222' %}
+                                                {% include "pattern/radio.html" with rid=3 rname=1 rvalue=1 ranswer='10' %}
+                                                {% include "pattern/radio.html" with rid=4 rname=1 rvalue=1 ranswer='12' %}
+                                                {% include "pattern/radio.html" with rid=5 rname=1 rvalue=1 ranswer='8' %}
+
+                                                {% endif %}
+                                            </div>
+                                        </form>
+                                        {% endwith %}
                                     </div>
-                                    <div class="h-1/6 flex justify-end">
+                                    <div class="flex justify-end" style="height:15%;">
                                         <form action="">
                                             <button type="submit" class="p-4 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-2xl font-bold select-none">
                                                 <div class="flex flex-row">

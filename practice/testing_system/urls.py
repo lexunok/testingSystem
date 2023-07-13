@@ -16,5 +16,10 @@ urlpatterns = [
     path("author/test/new", views.test_new_view, name="testNew"),
     path("author/test/<int:test_id>", views.test_created_view, name="testCreated"),
     path("author/test/form", views.test_form_view, name="testForm"),
+    path("author/programs", views.set_programs_view, name="setPrograms"),
+    path("author/programs/new", views.program_new_view, name="programNew"),
     path("teacher/home", views.teacher_home_view, name="teacherHome"),
+    path("teacher/programs", views.teacher_programs_view, name="teacherPrograms"),
+    path("teacher/students", views.teacher_students_view, name="teacherStudents"),
+    path("teacher/students/new", views.students_new_view, name="studentNew"),
 ]

@@ -1,20 +1,20 @@
 {% load static %}
 <div class="h-full bg-[#28448D] w-1/12 flex flex-col">
-    <form action="{% url 'authorHome' %}" class="mt-8">
+    <form action="{% url 'teacherHome' %}" class="mt-8">
         <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-lg flex mx-auto hover:bg-[#4860A8]">
             <img src="{% static "images/study_hat.png" %}" class="px-[20px] py-[27px] select-none" />
         </button>
         <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none text-center">Личный кабинет</div>
     </form>
-    <form action="{% url 'testNew' %}" class="mt-8">
+    <form action="{% url 'teacherStudents' %}" class="mt-8">
+        <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-full flex mx-auto hover:bg-[#4860A8]">
+            <img src="{% static "images/student.png" %}" class="px-[25px] py-[21.5px] select-none" />
+        </button>
+        <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Студенты</div>
+    </form>
+    <form action="{% url 'teacherPrograms' %}" class="mt-8">
         <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-full flex mx-auto hover:bg-[#4860A8]">
             <img src="{% static "images/computer.png" %}" class="px-[19.5px] py-[22.5px] select-none" />
-        </button>
-        <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Создание</div>
-    </form>
-    <form action="{% url 'setPrograms' %}" class="mt-8">
-        <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-full flex mx-auto hover:bg-[#4860A8]">
-            <img src="{% static "images/library.png" %}" class="px-[20px] py-[23px] select-none" />
         </button>
         <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none text-center">Программы</div>
     </form>
