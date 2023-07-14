@@ -61,41 +61,36 @@
                 <div class="w-full flex flex-row" id="main-main">
                     <div class="rounded-2xl border-[5px] border-[#28448D] h-full w-3/4 flex flex-col p-2 mr-5">
                         <div class="text-[#000000] text-2xl font-bold select-none" id="main-header">
-                            Вопрос № ЦИФРА
+                            Вопрос № {{question.countQuestion}}
                         </div>
                         <div class="flex justify-center items-center flex-col w-full px-4" id="main-main">
                             <div class="text-[#000000] text-3xl font-bold h-1/6">
-                                Сколько будет 2 + 2 + 2 + 2 + 2?
+                                {{question.text}}
                             </div>
                             <div class="h-5/6 w-full">
-                                {% with right_answer=2 %}
-                                <form method="" class="w-full h-full">
+                                <form method="post" class="w-full h-full">
+                                    {%csrf_token%}
                                     <div class="h-5/6 w-full overflow-scroll">
-                                        {% if right_answer >= 2 %}
-
-                                        {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer='0' %}
-                                        {% include "pattern/checkbox.html" with cid=2 cvalue=1 canswer='22222' %}
-                                        {% include "pattern/checkbox.html" with cid=3 cvalue=1 canswer='10' %}
-                                        {% include "pattern/checkbox.html" with cid=4 cvalue=1 canswer='12' %}
-                                        {% include "pattern/checkbox.html" with cid=5 cvalue=1 canswer='8' %}
-
-                                        {% elif right_answer == 1 %}
-
-                                        {% include "pattern/radio.html" with rid=1 rname=1 rvalue=1 ranswer='0' %}
-                                        {% include "pattern/radio.html" with rid=2 rname=1 rvalue=1 ranswer='22222' %}
-                                        {% include "pattern/radio.html" with rid=3 rname=1 rvalue=1 ranswer='10' %}
-                                        {% include "pattern/radio.html" with rid=4 rname=1 rvalue=1 ranswer='12' %}
-                                        {% include "pattern/radio.html" with rid=5 rname=1 rvalue=1 ranswer='8' %}
-
+                                        {% for answer in question.answer_set.all%}
+                                        {% if is_checkbox == True %}
+                                        <!-- {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer=answer.text %} --!>
+                                        <input type="checkbox" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+                                        <label for="answer{{ forloop.counter }}">{{forloop.counter}} {{ answer.text }}</label><br>
+                                        {% else %}
+                                        <input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+                                        <label for="answer{{ forloop.counter }}"> {{ answer.text }}</label><br>
+                                         <!--{% include "pattern/radio.html" with rid=1 rname=1 rvalue=1 ranswer=answer.text %}--!>
                                         {% endif %}
+                                        {% endfor %}
                                     </div>
                                     <div class="flex justify-end w-full h-1/6">
+                                        {% if is_choice == False%}
                                         <button type="submit" class="rounded-2xl bg-[#28448D] w-1/3 h-3/4 px-4 flex justify-center items-center text-[#FFFFFF] text-3xl font-bold select-none">
                                             Следующий вопрос
                                         </button>
+                                        {%endif%}
                                     </div>
                                 </form>
-                                {% endwith %}
                             </div>
                         </div>
                     </div>
@@ -106,46 +101,21 @@
                             </div>
                             <div class="h-5/6 w-full flex">
                                 <ul class="overflow-scroll h-full w-full">
+                                    {% for question in questionsList%}
                                     <li class="inline-block h-1/3 p-2" id="test-button">
-                                        <form action="" class="h-full w-full">
+                                        <form action="{% url 'test' test.id question.countQuestion%}" class="h-full w-full">
                                             <button type="submit" class="transition duration-300 ease-in-out rounded-lg border-[5px] border-[#28448D] h-full w-full">
                                                 <div class="h-full w-full text-[#000000] font-bold text-4xl select-none text-center flex items-center justify-center">
-                                                    1
+                                                    {{question.countQuestion}}
                                                 </div>
                                             </button>
                                         </form>
                                     </li>
-                                    <li class="inline-block h-1/3 p-2" id="test-button">
-                                        <form action="" class="h-full w-full">
-                                            <button type="submit" class="transition duration-300 ease-in-out rounded-lg border-[5px] border-[#28448D] h-full w-full">
-                                                <div class="h-full w-full text-[#000000] font-bold text-4xl select-none text-center flex items-center justify-center">
-                                                    10
-                                                </div>
-                                            </button>
-                                        </form>
-                                    </li>
-                                    <li class="inline-block h-1/3 p-2" id="test-button">
-                                        <form action="" class="h-full w-full">
-                                            <button type="submit" class="transition duration-300 ease-in-out rounded-lg border-[5px] border-[#28448D] h-full w-full">
-                                                <div class="h-full w-full text-[#000000] font-bold text-4xl select-none text-center flex items-center justify-center">
-                                                    99
-                                                </div>
-                                            </button>
-                                        </form>
-                                    </li>
-                                    <li class="inline-block h-1/3 p-2" id="test-button">
-                                        <form action="" class="h-full w-full">
-                                            <button type="submit" class="transition duration-300 ease-in-out rounded-lg border-[5px] border-[#28448D] h-full w-full">
-                                                <div class="h-full w-full text-[#000000] font-bold text-4xl select-none text-center flex items-center justify-center">
-                                                    1
-                                                </div>
-                                            </button>
-                                        </form>
-                                    </li>
+                                    {%endfor%}
                                 </ul>
                             </div>
                         </div>
-                        <form action="{% url 'testDescription' test.id%}" id="main-main-right">
+                        <form action="{% url 'result' test.id%}" id="main-main-right">
                             <button type="submit" class="rounded-2xl bg-[#28448D] w-full h-full flex items-center justify-center items-center text-[#FFFFFF] text-3xl font-bold select-none">
                                 Завершить
                             </button>

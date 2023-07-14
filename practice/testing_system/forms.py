@@ -16,6 +16,8 @@ class TestForm(forms.ModelForm):
         }
 
 
+
+
 class LoginForm(AuthenticationForm):
     username = forms.CharField(required=True, widget=forms.TextInput(attrs={'class':'field','placeholder':'Имя пользователя'}))
     password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class':'field','placeholder':'Пароль'}))

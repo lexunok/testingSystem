@@ -24,13 +24,13 @@
             <div class="w-11/12 px-10 flex flex-col py-3">
                 <div class="flex flex-none items-center justify-center w-full" id="main-header">
                     <div class="w-full p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none">
-                        {{set.name}}
+                        {{program.name}}
                     </div>
                 </div>
                 <div class="flex flex-row w-full" id="main-main">
                     <div class="flex flex-col w-2/3 h-full mr-5">
                         <div class="flex flex-col w-full h-3/4">
-                            <form action="{% url 'setTests' set.id %}" class="w-full">
+                            <form action="{% url 'programTests' program.id %}" class="w-full">
                                 <button type="submit" class="transition duration-300 ease-in-out w-full h-full flex flex-row bg-[#516EB9] rounded-lg hover:bg-[#5066A0]">
                                     <div class="text-[#FFFFFF] text-center text-2xl font-bold select-none p-4 w-11/12">
                                         Посмотреть все тесты по предмету

@@ -24,7 +24,7 @@
             <div class="w-11/12 px-10 flex flex-col py-3">
                 <div class="w-full flex flex-row flex-none items-center justify-center pr-2.5" id="main-header">
                     <div class="w-1/12">
-                        <form action="{% url 'setDescription' set.id %}" class="w-full h-full">
+                        <form action="{% url 'programDescription' program.id %}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
                                 <div class="flex flex-row w-full h-full">
                                     <div class="flex items-center px-1">
@@ -38,7 +38,7 @@
                         </form>
                     </div>
                     <div class="p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none w-11/12">
-                        Тестирование по {{set.name}}
+                        Тестирование по {{program.name}}
                     </div>
                 </div>
                 <div class="w-full" id="main-main">
