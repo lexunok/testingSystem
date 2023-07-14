@@ -1,0 +1,60 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
+    <link rel="stylesheet" href="{% static "css/font.css" %}" />
+    <link rel="stylesheet" href="{% static "css/interface.css" %}" />
+    <link rel="stylesheet" href="{% static "css/scroll_5px.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Создание программы</title>
+</head>
+<body>
+    <div class="w-screen h-screen overflow-hidden">
+        {% include "pattern/header.html" %}
+        <div class="flex flex-row" id="main">
+            {% include "pattern/navTeacher3.html" %}
+            <div class="w-11/12 px-10 flex flex-col items-center h-full">
+                <div class="w-full py-5" id="main-main">
+                    <div class="w-full h-full rounded-2xl border-[5px] border-[#28448D] flex flex-col p-4">
+                        <div class="h-[5%] text-2xl font-bold flex justify-center items-center select-none" >
+                            Список студентов
+                        </div>
+                        <div class="h-[95%]">
+                            <ul class="overflow-scroll h-full w-full">
+                                <li class="h-[15%] w-full p-2 flex-none flex flex-row" id="program-button">
+                                    <div class="w-[5%] rounded-2xl border-[5px] border-[#28448D] h-full mx-10 flex items-center justify-center text-2xl font-bold select-none">
+                                        №
+                                    </div>
+                                    <div class="h-full w-[75%] mx-10  rounded-2xl border-[5px] border-[#28448D] text-2xl font-bold flex justify-center items-center">
+                                        ИМЯ ФАМИЛИЯ
+                                    </div>
+                                    <form action="" class="w-[5%] h-full">
+                                        <button type="submit" class="w-full h-full transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#1F3D7A] flex items-center justify-center text-[#FFFFFF] text-xl font-bold select-none">
+                                            <img src="{% static "images/plus_circle.png" %}" class="h-[90%] select-none" />
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <form action="{% url 'studentProgram' %}" class="w-full flex justify-center h-[10%]">
+                    <button type="submit" class="h-3/4 transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#1F3D7A] flex items-center justify-center  text-[#FFFFFF] text-xl font-bold select-none">
+                        <div class="flex flex-row px-16">
+                            Вернуться назад
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
