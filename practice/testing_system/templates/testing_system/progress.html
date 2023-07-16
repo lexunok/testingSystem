@@ -7,9 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
     <link rel="stylesheet" href="{% static "css/font.css" %}" />
-    <link rel="stylesheet" href="{% static "css/interface.css" %}" />
     <link rel="stylesheet" href="{% static "css/scroll_10px.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,37 +17,24 @@
 <body>
     <div class="w-screen h-screen overflow-hidden">
         {% include "pattern/header.html" %}
-        <div class="flex flex-row" id="main">
-            <div class="h-full bg-[#28448D] w-1/12 flex flex-col">
-                <form action="{% url 'studentHome' %}" class="mt-8">
-                    <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-full flex mx-auto hover:bg-[#5066A0]">
-                        <img src="{% static "images/study_hat.png" %}" class="px-[20px] py-[27px] select-none" />
-                    </button>
-                    <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Программы</div>
-                </form>
-                <form action="{% url 'progress' %}" class="mt-8">
-                    <button type="submit" class="transition duration-300 ease-in-out bg-[#516EB9] h-fit w-fit rounded-lg flex mx-auto hover:bg-[#5066A0]">
-                        <img src="{% static "images/progress.png" %}" class="px-[25px] py-[26.5px] select-none" />
-                    </button>
-                    <div class="flex mx-auto text-[#FFFFFF] h-fit w-fit font-medium text-lg mt-1 select-none">Прогресс</div>
-                </form>
-            </div>
+        <div class="flex flex-row h-[90%]">
+            {% include "pattern/nav.html" %}
             <div class="w-11/12 px-10 flex flex-col items-center h-full py-3">
-                <div class="flex flex-none items-center justify-center w-4/5" id="main-header">
+                <div class="flex flex-none items-center justify-center w-4/5 h-[10%]">
                     <div class="w-full p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none">
                         Общая статистика
                     </div>
                 </div>
-                <div class="flex flex-col w-full p-4" id="main-main">
+                <div class="flex flex-col w-full h-[90%] p-4">
                     <div class="flex flex-row w-full h-1/6 flex-none pr-[0.625rem]">
                         <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-5/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Предмет</div></div>
                         <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-3/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Пройдено</div></div>
                         <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Дэдлайн</div></div>
                         <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Баллы</div></div>
                     </div>
-                    {% for program in programs%}
-                    {% for test in program.test_set.all%}
-                    <div class="overflow-scroll flex flex-col items-center w-full h-5/6" id="progress-list">
+                    <div class="overflow-scroll flex flex-col items-center w-full h-5/6">
+                        {% for program in programs%}
+                        {% for test in program.test_set.all%}
                         <div class="flex flex-row w-full h-1/6 flex-none my-2">
                             <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-5/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none"> {{test.name}} </div></div>
                             {%if test.result_set.exists == True%}
@@ -62,9 +47,9 @@
                             <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">  0</div></div>
                             {%endif%}
                         </div>
+                        {%endfor%}
+                        {%endfor%}
                     </div>
-                    {%endfor%}
-                    {%endfor%}
                 </div>
             </div>
         </div>

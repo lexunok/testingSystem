@@ -17,19 +17,12 @@
             background-image: url(../../static/images/tiuyu_back.png);
             background-size: 100% cover;
         }
-        #header {
-            height: 10%;
-        }
-
-        #main {
-            height: 90%;
-        }
     </style>
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
-        <img src="{% static "images/tiuyu_name.png" %}" class="w-1/5 2xl:pl-5 2xl:pt-5 xl:pl-4 xl:pt-4 lg:pl-3 lg:pt-3 md:pl-2 md:pt-2 select-none" id="header"/>
-        <div class="flex w-full items-center justify-center" id="main">
+        <img src="{% static "images/tiuyu_name.png" %}" class="w-1/5 h-[10%] 2xl:pl-5 2xl:pt-5 xl:pl-4 xl:pt-4 lg:pl-3 lg:pt-3 md:pl-2 md:pt-2 select-none"/>
+        <div class="flex w-full h-[90%] items-center justify-center">
             <div class="flex flex-col w-1/2 h-full">
                 <div class="w-full h-1/2 2xl:my-4 xl:my-3 lg:my-2 md:my-1">
                     <div class="flex text-[#FFFFFF] 2xl:text-2xl xl:text-base lg:text-sm md:text-xs h-full items-center justify-center text-center select-none">
@@ -41,20 +34,20 @@
                 </div>
                 <div class="flex flex-col h-1/2 w-3/4 flex mx-auto">
                     <form action="{% url 'login' %}" class="py-2 h-1/4">
-                        <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4] w-full h-full rounded-xl hover:bg-[#1A4780]">
+                        <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4] text-[#FFFFFF] w-full h-full rounded-xl hover:bg-[#14378F] hover:text-[#F2F2F2]">
                             <div class="flex flex-row items-center justify-center">
                                 <div class="h-full w-1/12">
                                     <img src="{% static "images/log_in.png" %}" class="h-full w-full select-none" />
                                 </div>
-                                <div class="p-2 2xl:text-3xl xl:text-xl lg:text-base md:text-xs text-[#FFFFFF] font-bold select-none">
+                                <div class="p-2 2xl:text-3xl xl:text-xl lg:text-base md:text-xs font-bold select-none">
                                     Войти в систему
                                 </div>
                             </div>
                         </button>
                     </form>
                     <form action="{% url 'register' %}" class="py-2 h-1/4">
-                        <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4] w-full h-full rounded-xl hover:bg-[#1A4780]">
-                            <div class="p-2 2xl:text-3xl xl:text-xl lg:text-base md:text-xs text-[#FFFFFF] font-bold select-none">
+                        <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4] text-[#FFFFFF] w-full h-full rounded-xl hover:bg-[#14378F] hover:text-[#F2F2F2]">
+                            <div class="p-2 2xl:text-3xl xl:text-xl lg:text-base md:text-xs font-bold select-none">
                                 Зарегистрирорваться
                             </div>
                         </button>

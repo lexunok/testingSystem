@@ -7,9 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
     <link rel="stylesheet" href="{% static "css/font.css" %}" />
-    <link rel="stylesheet" href="{% static "css/interface.css" %}" />
     <link rel="stylesheet" href="{% static "css/scroll_5px.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,27 +27,27 @@
             padding-right: 24px;
         }
 
-            .field::placeholder {
-                color: rgba(0,0,0, .50);
-                font-size: 24px;
-                line-height: 32px;
-                font-weight: 500;
-            }
+        .field::placeholder {
+            color: rgba(0,0,0, .50);
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 500;
+        }
 
-            .field:focus {
-                outline: 2px solid transparent;
-                outline-offset: 2px;
-            }
+        .field:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+        }
 
     </style>
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
         {% include "pattern/header.html" %}
-        <div class="flex flex-row" id="main">
-            {% include "pattern/navTeacher2.html" %}
+        <div class="flex flex-row h-[90%]">
+            {% include "pattern/nav.html" %}
             <div class="w-11/12 px-10 flex flex-col items-center h-full">
-                <div class="w-full py-5" id="main-main">
+                <div class="w-full py-5 h-[90%]">
                     <div class="w-full h-full rounded-2xl border-[5px] border-[#28448D] flex flex-col p-4">
                         <div class="h-[10%] text-4xl font-bold flex justify-center items-center select-none" >
                             Добавление студентов
@@ -87,9 +85,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full" id="main-header">
-                    <form action="{% url 'teacherStudents' %}" class="w-full flex justify-center" id="">
-                        <button type="submit" class="p-3 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-xl font-bold select-none">
+                <div class="w-full h-[10%]">
+                    <form action="{% url 'teacherStudents' %}" class="w-full flex justify-center">
+                        <button type="submit" class="transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-xl font-bold select-none">
                             <div class="flex flex-row px-16">
                                 <div class="px-2 flex items-center justify-center">
                                     <img src="{% static "images/plus_circle.png" %}" class=" select-none" />

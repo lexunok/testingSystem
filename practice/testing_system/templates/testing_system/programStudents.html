@@ -7,9 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
     <link rel="stylesheet" href="{% static "css/font.css" %}" />
-    <link rel="stylesheet" href="{% static "css/interface.css" %}" />
     <link rel="stylesheet" href="{% static "css/scroll_5px.css" %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,23 +17,26 @@
 <body>
     <div class="w-screen h-screen overflow-hidden">
         {% include "pattern/header.html" %}
-        <div class="flex flex-row" id="main">
-            {% include "pattern/navTeacher2.html" %}
+        <div class="flex flex-row h-[90%]">
+            {% include "pattern/nav.html" %}
             <div class="w-11/12 px-10 flex flex-col items-center h-full">
-                <div class="w-full py-5" id="main-main">
+                <div class="w-full py-5 h-[90%]">
                     <div class="w-full h-full rounded-2xl border-[5px] border-[#28448D] flex flex-col p-4">
                         <div class="h-[5%] text-2xl font-bold flex justify-center items-center select-none" >
                             Список студентов
                         </div>
                         <div class="h-[95%]">
                             <ul class="overflow-scroll h-full w-full">
-                                <li class="h-[15%] w-full p-2 flex-none flex flex-row" id="program-button">
+                                <li class="h-[15%] w-full p-2 flex-none flex flex-row">
                                     <div class="w-[5%] rounded-2xl border-[5px] border-[#28448D] h-full mx-10 flex items-center justify-center text-2xl font-bold">
                                         №
                                     </div>
-                                    <form action="" class="h-full w-[80%] mx-10">
-                                        <button type="submit" class="transition duration-300 ease-in-out rounded-2xl border-[5px] border-[#28448D] h-full w-full text-2xl font-bold">
-                                            ИМЯ ФАМИЛИЯ
+                                    <div class="rounded-2xl border-[5px] border-[#28448D] flex justify-center items-center h-full w-[75%] mx-10 text-2xl font-bold">
+                                        ИМЯ ФАМИЛИЯ
+                                    </div>
+                                    <form action="" class="w-[5%] h-full">
+                                        <button type="submit" class="w-full h-full transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center text-[#FFFFFF] text-xl font-bold select-none">
+                                            <img src="{% static "images/plus_circle.png" %}" class="rotate-45 h-[90%] select-none" />
                                         </button>
                                     </form>
                                 </li>
@@ -43,27 +44,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex flex-row justify-center" id="main-header">
-                    <form action="{% url 'studentNew' %}" class="w-1/2 flex justify-end mx-5 h-5/6" id="">
-                        <button type="submit" class="p-3 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-xl font-bold select-none">
+                <div class="w-full flex justify-center h-[10%]">
+                    <form action="{% url 'studentNew' %}" class="w-full flex justify-center h-5/6">
+                        <button type="submit" class="transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-xl font-bold select-none">
                             <div class="flex flex-row px-16">
                                 <div class="px-2 flex items-center justify-center">
                                     <img src="{% static "images/plus_circle.png" %}" class=" select-none" />
                                 </div>
                                 <div class="flex items-center justify-center">
                                     Добавить студента
-                                </div>
-                            </div>
-                        </button>
-                    </form>
-                    <form action="" class="w-1/2 flex justify-start mx-5 h-5/6" id="">
-                        <button type="submit" class="p-3 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-xl font-bold select-none">
-                            <div class="flex flex-row px-16">
-                                <div class="px-2 flex items-center justify-center">
-                                    <img src="{% static "images/pencil.png" %}" class=" select-none" />
-                                </div>
-                                <div class="flex items-center justify-center">
-                                    Редактировать
                                 </div>
                             </div>
                         </button>

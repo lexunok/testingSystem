@@ -7,7 +7,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
     <link rel="stylesheet" href="{% static "css/font.css" %}" />
     <link rel="stylesheet" href="{% static "css/chedio.css" %}" />
     <link rel="stylesheet" href="{% static "css/scroll_5px.css" %}" />
@@ -17,21 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Добавить вопрос</title>
     <style>
-        #main-header {
-            height: 15%;
-        }
-
-        #main-main {
-            height: 85%;
-        }
-
-        #answer{
-            height: 12%;
-        }
-
-        #formheader {
-            height: 8%;
-        }
         #ccwidth {
             width: 20%;
         }
@@ -44,10 +28,10 @@
 <body>
     <div class="w-screen h-screen overflow-hidden">
         {% include "pattern/header.html" %}
-        <div class="flex flex-row" id="main">
-            {% include "pattern/navAuthor2.html" %}
+        <div class="flex flex-row h-[90%]">
+            {% include "pattern/nav.html" %}
             <div class="w-11/12 px-10 flex flex-col py-5">
-                <div class="w-full flex flex-row  flex-none pr-2.5 " id="main-header">
+                <div class="w-full flex flex-row  flex-none pr-2.5 h-[15%]">
                     <div class="w-1/12 h-1/2">
                         <form action="{% url 'testCreated' 1 %}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
@@ -74,9 +58,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex flex-col mt-5" id="main-main">
+                <div class="w-full flex flex-col mt-5 h-[85%]">
                     <div class="border-[5px] border-[#28448D] h-full w-full p-4 rounded-xl flex flex-col">
-                        <div class="text-[#000000] text-2xl font-bold select-none flex justify-center" id="formheader">
+                        <div class="text-[#000000] text-2xl font-bold select-none flex justify-center h-[8%]">
                             Создание вопроса
                         </div>
                         <div class="flex flex-row h-1/5">
@@ -87,7 +71,7 @@
                                 <textarea class="testquestion"></textarea>
                             </div>
                         </div>
-                        <div class="flex flex-row py-1 w-full" id="answer">
+                        <div class="flex flex-row py-1 w-full h-[12%]">
                             <div class="w-1/2 mr-4">
                                 <input type="text"
                                        placeholder="Вариант ответа"
@@ -98,7 +82,7 @@
                                 {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
-                        <div class="flex flex-row py-1" id="answer">
+                        <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 <input type="text"
                                        placeholder="Вариант ответа"
@@ -109,7 +93,7 @@
                                 {% include "pattern/checkbox.html" with cid=2 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
-                        <div class="flex flex-row py-1" id="answer">
+                        <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 <input type="text"
                                        placeholder="Вариант ответа"
@@ -120,7 +104,7 @@
                                 {% include "pattern/checkbox.html" with cid=3 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
-                        <div class="flex flex-row py-1" id="answer">
+                        <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 <input type="text"
                                        placeholder="Вариант ответа"
@@ -131,7 +115,7 @@
                                 {% include "pattern/checkbox.html" with cid=4 cvalue=1 canswer='Ответ верный' %}
                             </div>
                         </div>
-                        <div class="flex flex-row py-1" id="answer">
+                        <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 <input type="text"
                                        placeholder="Вариант ответа"
@@ -143,8 +127,8 @@
                             </div>
                         </div>
                         <div class="w-full py-1">
-                            <form action="{% url 'testCreated' 1 %}" class="w-full flex justify-center" id="">
-                                <button type="submit" class="p-3 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-xl font-bold select-none">
+                            <form action="{% url 'testCreated' 1 %}" class="w-full flex justify-center">
+                                <button type="submit" class="transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-xl font-bold select-none">
                                     <div class="flex flex-row px-10">
                                         <div class="px-2 flex items-center justify-center">
                                             <img src="{% static "images/plus_circle.png" %}" class=" select-none" />

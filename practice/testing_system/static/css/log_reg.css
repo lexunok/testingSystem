@@ -3,10 +3,6 @@ body {
     background-size: 100% cover;
 }
 
-div {
-    font-family: 'Montserrat', sans-serif;
-}
-
 .field {
     background-color: rgba(124,168,255, .29);
     color: rgba(0,0,0, .50);

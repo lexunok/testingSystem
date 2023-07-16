@@ -7,7 +7,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static "css/bodystyle.css" %}" />
     <link rel="stylesheet" href="{% static "css/font.css" %}" />
     <link rel="stylesheet" href="{% static "css/chedio.css" %}" />
     <link rel="stylesheet" href="{% static "css/scroll_5px.css" %}" />
@@ -15,23 +14,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Тест</title>
-    <style>
-        #main-header {
-            height: 15%;
-        }
-
-        #main-main {
-            height: 85%;
-        }
-    </style>
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
         {% include "pattern/header.html" %}
-        <div class="flex flex-row" id="main">
-            {% include "pattern/navAuthor2.html" %}
+        <div class="flex flex-row h-[90%]">
+            {% include "pattern/nav.html" %}
             <div class="w-11/12 px-10 flex flex-col py-5">
-                <div class="w-full flex flex-row  flex-none pr-2.5 " id="main-header">
+                <div class="w-full flex flex-row  flex-none pr-2.5 h-[15%]">
                     <div class="w-1/12 h-1/2">
                         <form action="{% url 'authorHome' %}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
@@ -58,15 +48,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex flex-col" id="main-main">
+                <div class="w-full flex flex-col h-[85%]">
                     <div class="text-[#000000] text-center flex items-center justify-center text-2xl font-bold select-none h-1/6">
                         Список вопросов
                     </div>
                     <div class="h-4/6">
-                        <ul class="w-full h-full overflow-y-auto" id="answer-list">
+                        <ul class="w-full h-full overflow-scroll">
                             <li class="h-full w-full py-2 pr-1">
                                 <div class="border-[5px] border-[#28448D] h-full w-full flex flex-col p-4 rounded-xl">
-                                    <div class="flex flex-row relative" style="height:15%;">
+                                    <div class="flex flex-row relative h-[15%]">
                                         <div class="text-[#516EB9] text-2xl font-bold select-none absolute">
                                             ЧИСЛО Вопрос
                                         </div>
@@ -74,7 +64,7 @@
                                             Сколько будет 2 + 2 + 2 + 2 + 2?
                                         </div>
                                     </div>
-                                    <div class="h-4/6 flex items-center justify-center" style="height:70%;">
+                                    <div class="h-4/6 flex items-center justify-center h-[70%]">
                                         {% with right_answer=2 %}
                                         <form method="" class="w-full h-full">
                                             <div class="h-full w-full overflow-scroll">
@@ -99,38 +89,9 @@
                                         </form>
                                         {% endwith %}
                                     </div>
-                                    <div class="flex justify-end" style="height:15%;">
+                                    <div class="flex justify-end h-[15%]">
                                         <form action="">
-                                            <button type="submit" class="p-4 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-2xl font-bold select-none">
-                                                <div class="flex flex-row">
-                                                    <div class="px-2 flex items-center justify-center">
-                                                        <img src="{% static "images/pencil.png" %}" class="h-3/4 select-none" />
-                                                    </div>
-                                                    <div class="flex items-center justify-center">
-                                                        Редактировать
-                                                    </div>
-                                                </div>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="h-full w-full py-2 pr-1">
-                                <div class="border-[5px] border-[#28448D] h-full w-full flex flex-col p-4 rounded-xl">
-                                    <div class="h-1/6 flex flex-row relative">
-                                        <div class="text-[#516EB9] text-2xl font-bold select-none absolute">
-                                            ЧИСЛО Вопрос
-                                        </div>
-                                        <div class="text-[#000000] text-2xl font-bold flex  justify-center w-full">
-                                            Текст
-                                        </div>
-                                    </div>
-                                    <div class="h-4/6 flex items-center justify-center">
-                                        ВОПРОСИТЕЛЬНЫЙ ВОПРОС ВОПРОСА
-                                    </div>
-                                    <div class="h-1/6 flex justify-end">
-                                        <form action="">
-                                            <button type="submit" class="p-4 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-2xl font-bold select-none">
+                                            <button type="submit" class="transition duration-300 ease-in-out p-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-2xl font-bold select-none">
                                                 <div class="flex flex-row">
                                                     <div class="px-2 flex items-center justify-center">
                                                         <img src="{% static "images/pencil.png" %}" class="h-3/4 select-none" />
@@ -148,7 +109,7 @@
                     </div>
                     <div class="h-1/6 flex items-center justify-center ">
                         <form action="{% url 'testForm' %}" id="main-main-right">
-                            <button type="submit" class="p-4 rounded-2xl bg-[#28448D] flex items-center justify-center  text-[#FFFFFF] text-3xl font-bold select-none">
+                            <button type="submit" class="transition duration-300 ease-in-out p-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-3xl font-bold select-none">
                                 <div class="flex flex-row">
                                     <div class="px-2 flex items-center justify-center">
                                         <img src="{% static "images/plus_circle.png" %}" class=" select-none" />
