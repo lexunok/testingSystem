@@ -12,6 +12,8 @@ class Program(models.Model):
     name = models.TextField(default='')
     description = models.TextField(default='')
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        return self.name
 
 
 class Test(models.Model):

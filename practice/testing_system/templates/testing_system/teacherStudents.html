@@ -27,19 +27,22 @@
                         </div>
                         <div class="h-[95%]">
                             <ul class="overflow-scroll h-full w-full">
+                                {%for student in students%}
                                 <li class="h-[15%] w-full p-2 flex-none flex flex-row">
                                     <div class="w-[5%] rounded-2xl border-[5px] border-[#28448D] h-full mx-10 flex items-center justify-center text-2xl font-bold">
-                                        №
+                                        № {{forloop.counter}}
                                     </div>
                                     <div class="rounded-2xl border-[5px] border-[#28448D] flex justify-center items-center h-full w-[75%] mx-10 text-2xl font-bold">
-                                        ИМЯ ФАМИЛИЯ
+                                        {{student.user.first_name}} {{student.user.last_name}}
                                     </div>
-                                    <form action="" class="w-[5%] h-full">
+                                    <form method="post" action="{% url 'studentDelete' student.id%}" class="w-[5%] h-full">
+                                        {%csrf_token%}
                                         <button type="submit" class="w-full h-full transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center text-[#FFFFFF] text-xl font-bold select-none">
                                             <img src="{% static "images/plus_circle.png" %}" class="rotate-45 h-[90%] select-none" />
                                         </button>
                                     </form>
                                 </li>
+                                {%endfor%}
                             </ul>
                         </div>
                     </div>

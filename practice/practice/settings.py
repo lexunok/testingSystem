@@ -1,8 +1,6 @@
 from pathlib import Path
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -14,6 +12,8 @@ SECRET_KEY = 'django-insecure-$f^8fs9j9fjj9m$a#21u@&byb&n@!e9vbdit9_r1d4#o+z@(=w
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+LOGIN_URL = '/login'
 
 INSTALLED_APPS = [
     'testing_system.apps.TestingsystemConfig',
@@ -55,14 +55,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'practice.wsgi.application'
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -82,7 +80,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
@@ -90,7 +87,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

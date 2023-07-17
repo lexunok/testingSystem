@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import Group, User
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -32,40 +33,34 @@ def login_view(request):
     return render(request, 'testing_system/login.html', {'form': form})
 
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('/')
 
 
-def register_view(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(request, username=username, password=password)
-            login(request, user)
-            return redirect('/login')
-    else:
-        form = RegistrationForm()
-    return render(request, 'testing_system/register.html', {'form': form})
-
-
+@login_required
+@permission_required('testing_system.view_result')
 def student_home_view(request):
     student = Student.objects.get(user=request.user)
     programs = student.programs.all()
     return render(request, 'testing_system/studentHome.html', context={'programs': programs})
 
 
+@login_required
+@permission_required('testing_system.add_test')
 def author_home_view(request):
     return render(request, 'testing_system/authorHome.html')
 
 
+@login_required
+@permission_required('testing_system.add_student')
 def teacher_home_view(request):
     return render(request, 'testing_system/teacherHome.html')
 
 
+@login_required
+@permission_required('testing_system.view_result')
 def program_description_view(request, program_id):
     program = Program.objects.get(id=program_id)
     tests = program.test_set.order_by('deadline')[0:2].all()
@@ -74,6 +69,8 @@ def program_description_view(request, program_id):
                   context={'program': program, 'tests': tests, 'title': title})
 
 
+@login_required
+@permission_required('testing_system.view_result')
 def test_view(request, test_id, question_count):
     test = Test.objects.get(id=test_id)
     student = Student.objects.get(user=request.user)
@@ -104,6 +101,8 @@ def test_view(request, test_id, question_count):
                            })
 
 
+@login_required
+@permission_required('testing_system.view_result')
 def program_tests_view(request, program_id):
     program = Program.objects.get(id=program_id)
     tests = Test.objects.filter(program=program).all()
@@ -111,6 +110,8 @@ def program_tests_view(request, program_id):
                   context={'program': program, 'tests': tests})
 
 
+@login_required
+@permission_required('testing_system.view_result')
 def test_description_view(request, test_id):
     test = Test.objects.get(id=test_id)
     student = Student.objects.get(user=request.user)
@@ -134,6 +135,8 @@ def test_description_view(request, test_id):
                            })
 
 
+@login_required
+@permission_required('testing_system.add_test')
 def test_new_view(request):
     if request.method == 'POST':
         form = TestForm(request.POST)
@@ -145,11 +148,15 @@ def test_new_view(request):
     return render(request, 'testing_system/testNew.html', context={'form': form})
 
 
+@login_required
+@permission_required('testing_system.add_test')
 def test_created_view(request, test_id):
     test = Test.objects.get(id=test_id)
     return render(request, 'testing_system/testCreated.html', context={'test': test})
 
 
+@login_required
+@permission_required('testing_system.add_test')
 def test_form_view(request, test_id):
     test = Test.objects.get(id=test_id)
     if request.method == 'POST':
@@ -180,12 +187,16 @@ def test_form_view(request, test_id):
     return render(request, 'testing_system/testForm.html', context={'test': test, 'form': form})
 
 
+@login_required
+@permission_required('testing_system.view_result')
 def progress_view(request):
     student = Student.objects.get(user=request.user)
     programs = student.programs.all()
     return render(request, 'testing_system/progress.html', context={'programs': programs})
 
 
+@login_required
+@permission_required('testing_system.view_result')
 def result_view(request, test_id):
     if request.method == 'POST':
         test = Test.objects.get(id=test_id)
@@ -196,11 +207,15 @@ def result_view(request, test_id):
     return HttpResponseRedirect('/student/programs/desc/' + str(test_id))
 
 
+@login_required
+@permission_required('testing_system.add_test')
 def author_programs_view(request):
     programs = request.user.program_set.all()
     return render(request, 'testing_system/authorPrograms.html', context={'programs': programs})
 
 
+@login_required
+@permission_required('testing_system.add_test')
 def program_new_view(request):
     if request.method == 'POST':
         form = ProgramForm(request.POST)
@@ -213,13 +228,79 @@ def program_new_view(request):
     return render(request, 'testing_system/programNew.html', context={'form': form})
 
 
+@login_required
+@permission_required('testing_system.add_student')
 def teacher_programs_view(request):
-    return render(request, 'testing_system/teacherPrograms.html')
+    programs = Program.objects.all()
+    return render(request, 'testing_system/teacherPrograms.html', context={'programs': programs})
 
 
+@login_required
+@permission_required('testing_system.add_student')
 def teacher_students_view(request):
-    return render(request, 'testing_system/programStudents.html')
+    students = request.user.student_set.all()
+    return render(request, 'testing_system/teacherStudents.html', context={'students': students})
 
 
+@login_required
+@permission_required('testing_system.add_student')
 def students_new_view(request):
-    return render(request, 'testing_system/studentNew.html')
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            student = Student.objects.create(user=user, teacher=request.user)
+            group = Group.objects.get(name='student')
+            user.groups.add(group)
+            user.save()
+            student.save()
+            return redirect('/teacher/students')
+    else:
+        form = RegistrationForm()
+    return render(request, 'testing_system/studentNew.html', context={'form': form})
+
+
+@login_required
+@permission_required('testing_system.add_student')
+def students_delete_view(request, student_id):
+    if request.method == 'POST':
+        student = Student.objects.get(id=student_id)
+        student.user.delete()
+        student.delete()
+    return HttpResponseRedirect('/teacher/students')
+
+
+@login_required
+@permission_required('testing_system.add_student')
+def list_students_view(request, program_id):
+    program = Program.objects.get(id=program_id)
+    return render(request, 'testing_system/listStudent.html', context={'program': program})
+
+
+@login_required
+@permission_required('testing_system.add_student')
+def add_student_program_view(request, program_id):
+    program = Program.objects.get(id=program_id)
+    return render(request, 'testing_system/addStudentProgram.html', context={'program': program})
+
+
+@login_required
+@permission_required('testing_system.add_student')
+def adding_student_view(request, program_id, student_id):
+    if request.method == 'POST':
+        student = Student.objects.get(id=student_id)
+        program = Program.objects.get(id=program_id)
+        student.programs.add(program)
+        student.save()
+    return HttpResponseRedirect('/teacher/programs/' + str(program_id))
+
+
+@login_required
+@permission_required('testing_system.add_student')
+def delete_student_program_view(request, program_id, student_id):
+    if request.method == 'POST':
+        student = Student.objects.get(id=student_id)
+        program = Program.objects.get(id=program_id)
+        student.programs.remove(program)
+        student.save()
+    return HttpResponseRedirect('/teacher/programs/' + str(program_id))

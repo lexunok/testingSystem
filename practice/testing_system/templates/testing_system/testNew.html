@@ -21,6 +21,9 @@
             {% include "pattern/nav.html" %}
             <form method="post" class="w-11/12 px-10 flex flex-col h-full py-3">
                 {%csrf_token%}
+                <div>
+                    {{form.program}}
+                </div>
                 <div class="flex flex-row w-full h-[10%]">
                     <div class="rounded-lg text-[#FFFFFF] bg-[#516EB9] text-3xl font-bold justify-center select-none flex items-center w-1/3 mr-4">
                         Название теста

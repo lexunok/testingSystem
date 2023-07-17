@@ -20,9 +20,10 @@ class QuestionForm(forms.Form):
 
 
 class TestForm(forms.ModelForm):
+    program = forms.ModelChoiceField(queryset=Program.objects.all())
     class Meta:
         model = Test
-        fields = ('name', 'deadline', 'description')
+        fields = ('name', 'deadline', 'description','program')
         widgets = {
             "name": forms.TextInput(attrs={"class": 'testname'}),
             "description": forms.Textarea(attrs={"class": 'testaddition'}),
