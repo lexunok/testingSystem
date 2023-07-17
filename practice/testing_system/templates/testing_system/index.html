@@ -32,8 +32,8 @@
                         Использование данного сайта помогает сократить время на проверку тестов и упрощает процесс оценки знаний студентов.
                     </div>
                 </div>
-                <div class="flex flex-col h-1/2 w-3/4 flex mx-auto">
-                    <form action="{% url 'login' %}" class="py-2 h-1/4">
+                <div class="h-1/2 w-3/4 flex mx-auto">
+                    <form action="{% url 'login' %}" class="w-full py-2 h-1/4">
                         <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4] text-[#FFFFFF] w-full h-full rounded-xl hover:bg-[#14378F] hover:text-[#F2F2F2]">
                             <div class="flex flex-row items-center justify-center">
                                 <div class="h-full w-1/12">
@@ -42,13 +42,6 @@
                                 <div class="p-2 2xl:text-3xl xl:text-xl lg:text-base md:text-xs font-bold select-none">
                                     Войти в систему
                                 </div>
-                            </div>
-                        </button>
-                    </form>
-                    <form action="{% url 'register' %}" class="py-2 h-1/4">
-                        <button type="submit" class="transition duration-300 ease-in-out bg-[#173FA4] text-[#FFFFFF] w-full h-full rounded-xl hover:bg-[#14378F] hover:text-[#F2F2F2]">
-                            <div class="p-2 2xl:text-3xl xl:text-xl lg:text-base md:text-xs font-bold select-none">
-                                Зарегистрирорваться
                             </div>
                         </button>
                     </form>

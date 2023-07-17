@@ -16,12 +16,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Добавить вопрос</title>
     <style>
-        #ccwidth {
-            width: 20%;
-        }
-
-        #ctwidth {
-            width: 80%;
+        input[type=checkbox] {
+            position: absolute;
+            width: 60%;
+            height: 40%;
+            opacity: 0;
+            margin-left: 14px;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -76,40 +77,95 @@
                             <div class="w-1/2 mr-4">
                                 {{form.answer1}}
                             </div>
-                            <div class="flex items-center w-1/2">
-                                {{form.is_correct1}}
+                            <div class="flex items-center h-full w-1/2">
+                                <div class="block overflow-hidden relative h-full w-[6%] flex items-center">
+                                    {{form.is_correct1}}
+                                    <label for="1" class="block">
+                                        <svg width="50" height="50" viewbox="0 0 100 100">
+                                            <rect x="30" y="20" width="50" height="50" stroke-width="5" stroke="#000000" fill="none" />
+                                            <g transform="translate(0,-952.36222)">
+                                                <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 " stroke="#28448D" stroke-width="3" fill="none" class="path1" />
+                                            </g>
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="text-2xl text-[#000000] font-bold flex items-center h-full w-[80%]">Ответ верный</div>
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 {{form.answer2}}
                             </div>
-                            <div class="flex items-center w-1/2">
-                                {{form.is_correct2}}
+                            <div class="flex items-center h-full w-1/2">
+                                <div class="block overflow-hidden relative h-full w-[6%] flex items-center">
+                                    {{form.is_correct2}}
+                                    <label for="2" class="block">
+                                        <svg width="50" height="50" viewbox="0 0 100 100">
+                                            <rect x="30" y="20" width="50" height="50" stroke-width="5" stroke="#000000" fill="none" />
+                                            <g transform="translate(0,-952.36222)">
+                                                <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 " stroke="#28448D" stroke-width="3" fill="none" class="path1" />
+                                            </g>
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="text-2xl text-[#000000] font-bold flex items-center h-full w-[80%]">Ответ верный</div>
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 {{form.answer3}}
                             </div>
-                            <div class="flex items-center w-1/2">
-                                {{form.is_correct3}}
+                            <div class="flex items-center h-full w-1/2">
+                                <div class="block overflow-hidden relative h-full w-[6%] flex items-center">
+                                    {{form.is_correct3}}
+                                    <label for="3" class="block">
+                                        <svg width="50" height="50" viewbox="0 0 100 100">
+                                            <rect x="30" y="20" width="50" height="50" stroke-width="5" stroke="#000000" fill="none" />
+                                            <g transform="translate(0,-952.36222)">
+                                                <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 " stroke="#28448D" stroke-width="3" fill="none" class="path1" />
+                                            </g>
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="text-2xl text-[#000000] font-bold flex items-center h-full w-[80%]">Ответ верный</div>
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 {{form.answer4}}
                             </div>
-                            <div class="flex items-center w-1/2">
-                                {{form.is_correct4}}
+                            <div class="flex items-center h-full w-1/2">
+                                <div class="block overflow-hidden relative h-full w-[6%] flex items-center">
+                                    {{form.is_correct4}}
+                                    <label for="4" class="block">
+                                        <svg width="50" height="50" viewbox="0 0 100 100">
+                                            <rect x="30" y="20" width="50" height="50" stroke-width="5" stroke="#000000" fill="none" />
+                                            <g transform="translate(0,-952.36222)">
+                                                <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 " stroke="#28448D" stroke-width="3" fill="none" class="path1" />
+                                            </g>
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="text-2xl text-[#000000] font-bold flex items-center h-full w-[80%]">Ответ верный</div>
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
                                 {{form.answer5}}
                             </div>
-                            <div class="flex items-center w-1/2">
-                                {{form.is_correct5}}
+                            <div class="flex flex-row items-center h-full w-1/2">
+                                <div class="block overflow-hidden relative h-full w-[6%] flex items-center">
+                                    {{form.is_correct5}}
+                                    <label for="5" class="block">
+                                        <svg width="50" height="50" viewbox="0 0 100 100">
+                                            <rect x="30" y="20" width="50" height="50" stroke-width="5" stroke="#000000" fill="none" />
+                                            <g transform="translate(0,-952.36222)">
+                                                <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 " stroke="#28448D" stroke-width="3" fill="none" class="path1" />
+                                            </g>
+                                        </svg>
+                                    </label>
+                                </div>
+                                <div class="text-2xl text-[#000000] font-bold flex items-center h-full w-[80%]">Ответ верный</div>
                             </div>
                         </div>
                         <div class="w-full py-1">
