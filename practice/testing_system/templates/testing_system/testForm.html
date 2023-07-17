@@ -47,18 +47,19 @@
                         </form>
                     </div>
                     <div class="p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center flex items-center justify-center text-2xl font-bold select-none w-7/12 h-1/2 mx-10">
-                        ТЕМА ТЕСТА
+                        {{test.name}}
                     </div>
                     <div class="flex flex-col p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg flex justify-center text-2xl font-bold select-none w-4/12 h-full">
                         <div>
-                            Доступен до: ДАТА
+                            Доступен до: {{test.deadline}}
                         </div>
                         <div>
-                            Количество вопросов: ЧИСЛО
+                            Количество вопросов: {{test.question_set.count}}
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex flex-col mt-5 h-[85%]">
+                <form method="post" class="w-full flex flex-col mt-5 h-[85%]">
+                    {%csrf_token%}
                     <div class="border-[5px] border-[#28448D] h-full w-full p-4 rounded-xl flex flex-col">
                         <div class="text-[#000000] text-2xl font-bold select-none flex justify-center h-[8%]">
                             Создание вопроса
@@ -68,66 +69,51 @@
                                 Текст вопроса
                             </div>
                             <div class="w-2/3 ml-4">
-                                <textarea class="testquestion"></textarea>
+                                {{form.text}}
                             </div>
                         </div>
                         <div class="flex flex-row py-1 w-full h-[12%]">
                             <div class="w-1/2 mr-4">
-                                <input type="text"
-                                       placeholder="Вариант ответа"
-                                       name="testdate"
-                                       class="testanswer" />
+                                {{form.answer1}}
                             </div>
                             <div class="flex items-center w-1/2">
-                                {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer='Ответ верный' %}
+                                {{form.is_correct1}}
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
-                                <input type="text"
-                                       placeholder="Вариант ответа"
-                                       name="testdate"
-                                       class="testanswer" />
+                                {{form.answer2}}
                             </div>
                             <div class="flex items-center w-1/2">
-                                {% include "pattern/checkbox.html" with cid=2 cvalue=1 canswer='Ответ верный' %}
+                                {{form.is_correct2}}
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
-                                <input type="text"
-                                       placeholder="Вариант ответа"
-                                       name="testdate"
-                                       class="testanswer" />
+                                {{form.answer3}}
                             </div>
                             <div class="flex items-center w-1/2">
-                                {% include "pattern/checkbox.html" with cid=3 cvalue=1 canswer='Ответ верный' %}
+                                {{form.is_correct3}}
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
-                                <input type="text"
-                                       placeholder="Вариант ответа"
-                                       name="testdate"
-                                       class="testanswer" />
+                                {{form.answer4}}
                             </div>
                             <div class="flex items-center w-1/2">
-                                {% include "pattern/checkbox.html" with cid=4 cvalue=1 canswer='Ответ верный' %}
+                                {{form.is_correct4}}
                             </div>
                         </div>
                         <div class="flex flex-row py-1 h-[12%]">
                             <div class="w-1/2 mr-4">
-                                <input type="text"
-                                       placeholder="Вариант ответа"
-                                       name="testdate"
-                                       class="testanswer" />
+                                {{form.answer5}}
                             </div>
                             <div class="flex items-center w-1/2">
-                                {% include "pattern/checkbox.html" with cid=5 cvalue=1 canswer='Ответ верный' %}
+                                {{form.is_correct5}}
                             </div>
                         </div>
                         <div class="w-full py-1">
-                            <form action="{% url 'testCreated' 1 %}" class="w-full flex justify-center">
+                            <div class="w-full flex justify-center">
                                 <button type="submit" class="transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-xl font-bold select-none">
                                     <div class="flex flex-row px-10">
                                         <div class="px-2 flex items-center justify-center">
@@ -138,10 +124,10 @@
                                         </div>
                                     </div>
                                 </button>
-                            </form>
+                            </div>
                         </div>
                     </div> 
-                </div>
+                </form>
             </div>
         </div>
     </div>

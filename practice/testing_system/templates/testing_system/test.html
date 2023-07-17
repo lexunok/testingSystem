@@ -106,7 +106,8 @@
                                 </ul>
                             </div>
                         </div>
-                        <form action="{% url 'result' test.id%}" class="h-[10%]" >
+                        <form method="post" action="{% url 'result' test.id%}" class="h-[10%]" >
+                            {%csrf_token%}
                             <button type="submit" class="transition duration-300 ease-in-out rounded-2xl bg-[#28448D] w-full h-full flex items-center justify-center items-center text-[#FFFFFF] hover:bg-[#223A77] hover:text-[#F2F2F2] text-3xl font-bold select-none">
                                 Завершить
                             </button>

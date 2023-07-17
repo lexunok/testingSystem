@@ -37,14 +37,14 @@
                         </form>
                     </div>
                     <div class="p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center flex items-center justify-center text-2xl font-bold select-none w-7/12 h-1/2 mx-10">
-                        ТЕМА ТЕСТА
+                        {{test.name}}
                     </div>
                     <div class="flex flex-col p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg flex justify-center text-2xl font-bold select-none w-4/12 h-full">
                         <div>
-                            Доступен до: ДАТА
+                            Доступен до: {{test.deadline}}
                         </div>
                         <div>
-                            Количество вопросов: ЧИСЛО
+                            Количество вопросов: {{test.question_set.count}}
                         </div>
                     </div>
                 </div>
@@ -54,40 +54,32 @@
                     </div>
                     <div class="h-4/6">
                         <ul class="w-full h-full overflow-scroll">
+                            {% for question in test.question_set.all%}
                             <li class="h-full w-full py-2 pr-1">
                                 <div class="border-[5px] border-[#28448D] h-full w-full flex flex-col p-4 rounded-xl">
                                     <div class="flex flex-row relative h-[15%]">
                                         <div class="text-[#516EB9] text-2xl font-bold select-none absolute">
-                                            ЧИСЛО Вопрос
+                                            {{question.countQuestion}} Вопрос
                                         </div>
                                         <div class="text-[#000000] text-2xl font-bold flex justify-center w-full text-center">
-                                            Сколько будет 2 + 2 + 2 + 2 + 2?
+                                            {{question.text}}
                                         </div>
                                     </div>
                                     <div class="h-4/6 flex items-center justify-center h-[70%]">
-                                        {% with right_answer=2 %}
-                                        <form method="" class="w-full h-full">
+                                        <div class="w-full h-full">
                                             <div class="h-full w-full overflow-scroll">
+                                                {%for answer in question.answer_set.all%}
+                                                <input type="checkbox" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+                                                <label for="answer{{ forloop.counter }}">{{forloop.counter}} {{ answer.text }}</label><br>
+                                                {%endfor%}
+                                                <!--
                                                 {% if right_answer >= 2 %}
-
                                                 {% include "pattern/checkbox.html" with cid=1 cvalue=1 canswer='0' %}
-                                                {% include "pattern/checkbox.html" with cid=2 cvalue=1 canswer='22222' %}
-                                                {% include "pattern/checkbox.html" with cid=3 cvalue=1 canswer='10' %}
-                                                {% include "pattern/checkbox.html" with cid=4 cvalue=1 canswer='12' %}
-                                                {% include "pattern/checkbox.html" with cid=5 cvalue=1 canswer='8' %}
-
                                                 {% elif right_answer == 1 %}
-
                                                 {% include "pattern/radio.html" with rid=1 rname=1 rvalue=1 ranswer='0' %}
-                                                {% include "pattern/radio.html" with rid=2 rname=1 rvalue=1 ranswer='22222' %}
-                                                {% include "pattern/radio.html" with rid=3 rname=1 rvalue=1 ranswer='10' %}
-                                                {% include "pattern/radio.html" with rid=4 rname=1 rvalue=1 ranswer='12' %}
-                                                {% include "pattern/radio.html" with rid=5 rname=1 rvalue=1 ranswer='8' %}
-
-                                                {% endif %}
+                                                {% endif %} --!>
                                             </div>
-                                        </form>
-                                        {% endwith %}
+                                        </div>
                                     </div>
                                     <div class="flex justify-end h-[15%]">
                                         <form action="">
@@ -105,10 +97,11 @@
                                     </div>
                                 </div>
                             </li>
+                            {%endfor%}
                         </ul>
                     </div>
                     <div class="h-1/6 flex items-center justify-center ">
-                        <form action="{% url 'testForm' %}" id="main-main-right">
+                        <form action="{% url 'testForm' test.id%}" id="main-main-right">
                             <button type="submit" class="transition duration-300 ease-in-out p-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-3xl font-bold select-none">
                                 <div class="flex flex-row">
                                     <div class="px-2 flex items-center justify-center">

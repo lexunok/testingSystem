@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group, User
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, LoginForm, TestForm
+from .forms import RegistrationForm, LoginForm, TestForm, ProgramForm, QuestionForm
 from .models import Student, Program, Test, Question, Answer, Choice, Result
 
 
@@ -68,14 +69,15 @@ def teacher_home_view(request):
 def program_description_view(request, program_id):
     program = Program.objects.get(id=program_id)
     tests = program.test_set.order_by('deadline')[0:2].all()
+    title = program.name
     return render(request, 'testing_system/programDescription.html',
-                  context={'program': program, 'tests': tests})
+                  context={'program': program, 'tests': tests, 'title': title})
 
 
 def test_view(request, test_id, question_count):
     test = Test.objects.get(id=test_id)
     student = Student.objects.get(user=request.user)
-    result = student.result_set.get(test=test)
+    result = student.result_set.filter(test=test).first()
     question = test.question_set.get(countQuestion=question_count)
     is_choice = result.choice_set.filter(countQuestion=question_count).exists()
     is_checkbox = question.answer_set.filter(is_correct=True).count() > 1
@@ -115,19 +117,20 @@ def test_description_view(request, test_id):
     status = test.result_set.filter(student=student).exists()
     countQuestions = test.question_set.count()
     if request.method == 'POST':
-        result = Result.objects.create(test=test,student=student)
+        result = Result.objects.create(test=test, student=student)
         result.save()
-        redirect('/student/programs/test/' + str(test_id) + '/1')
-    if status == True:
-        result = test.result_set.get(student=student)
-        countResult = result.choice_set.filter(is_correct=True).count()
+        return redirect('/student/programs/test/' + str(test_id) + '/1')
     else:
-        countResult = 0
+        if status == True:
+            result = test.result_set.filter(student=student).first()
+            countResult = result.choice_set.filter(is_correct=True).count()
+        else:
+            countResult = 0
     return render(request, 'testing_system/testDescription.html',
                   context={'test': test,
                            'status': status,
-                           'countQuestions':countQuestions,
-                           'countResult' : countResult
+                           'countQuestions': countQuestions,
+                           'countResult': countResult
                            })
 
 
@@ -143,17 +146,44 @@ def test_new_view(request):
 
 
 def test_created_view(request, test_id):
-    return render(request, 'testing_system/testCreated.html')
+    test = Test.objects.get(id=test_id)
+    return render(request, 'testing_system/testCreated.html', context={'test': test})
 
 
-def test_form_view(request):
-    return render(request, 'testing_system/testForm.html')
+def test_form_view(request, test_id):
+    test = Test.objects.get(id=test_id)
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            count = test.question_set.count() + 1
+            text = form.cleaned_data['text']
+            question = Question.objects.create(text=text, test=test, countQuestion=count)
+            answer1 = form.cleaned_data['answer1']
+            is_correct1 = form.cleaned_data['is_correct1']
+            answer_model1 = Answer.objects.create(is_correct=is_correct1, question=question, text=answer1)
+            answer2 = form.cleaned_data['answer2']
+            is_correct2 = form.cleaned_data['is_correct2']
+            answer_model2 = Answer.objects.create(is_correct=is_correct2, question=question, text=answer2)
+            answer3 = form.cleaned_data['answer3']
+            is_correct3 = form.cleaned_data['is_correct3']
+            answer_model3 = Answer.objects.create(is_correct=is_correct3, question=question, text=answer3)
+            answer4 = form.cleaned_data['answer4']
+            is_correct4 = form.cleaned_data['is_correct4']
+            answer_model4 = Answer.objects.create(is_correct=is_correct4, question=question, text=answer4)
+            answer5 = form.cleaned_data['answer5']
+            is_correct5 = form.cleaned_data['is_correct5']
+            answer_model5 = Answer.objects.create(is_correct=is_correct5, question=question, text=answer5)
+            question.save()
+            return redirect('/author/test/' + str(test_id))
+    else:
+        form = QuestionForm()
+    return render(request, 'testing_system/testForm.html', context={'test': test, 'form': form})
 
 
 def progress_view(request):
     student = Student.objects.get(user=request.user)
     programs = student.programs.all()
-    return render(request, 'testing_system/progress.html', context={'programs':programs})
+    return render(request, 'testing_system/progress.html', context={'programs': programs})
 
 
 def result_view(request, test_id):
@@ -161,17 +191,26 @@ def result_view(request, test_id):
         test = Test.objects.get(id=test_id)
         student = Student.objects.get(user=request.user)
         result = test.result_set.get(student=student)
-        result.total = result.choice_set.filter(is_correct==True).count()
+        result.total = result.choice_set.filter(is_correct=True).count()
         result.save()
-
+    return HttpResponseRedirect('/student/programs/desc/' + str(test_id))
 
 
 def author_programs_view(request):
-    return render(request, 'testing_system/authorProgram.html')
+    programs = request.user.program_set.all()
+    return render(request, 'testing_system/authorPrograms.html', context={'programs': programs})
 
 
 def program_new_view(request):
-    return render(request, 'testing_system/programNew.html')
+    if request.method == 'POST':
+        form = ProgramForm(request.POST)
+        program = form.save()
+        program.author = request.user
+        program.save()
+        return redirect('/author/programs')
+    else:
+        form = ProgramForm()
+    return render(request, 'testing_system/programNew.html', context={'form': form})
 
 
 def teacher_programs_view(request):
