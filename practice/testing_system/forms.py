@@ -20,7 +20,7 @@ class QuestionForm(forms.Form):
 
 
 class TestForm(forms.ModelForm):
-    program = forms.ModelChoiceField(queryset=Program.objects.all())
+    program = forms.ModelChoiceField(queryset=Program.objects.all(), widget=forms.Select(attrs={'class': 'program'}))
     class Meta:
         model = Test
         fields = ('name', 'deadline', 'description','program')
@@ -28,6 +28,7 @@ class TestForm(forms.ModelForm):
             "name": forms.TextInput(attrs={"class": 'testname'}),
             "description": forms.Textarea(attrs={"class": 'testaddition'}),
             "deadline": forms.DateInput(attrs={"class": 'testdate', 'type': 'date'}),
+
         }
 
 

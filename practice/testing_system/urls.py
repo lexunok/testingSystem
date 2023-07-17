@@ -18,6 +18,7 @@ urlpatterns = [
     path("author/test/form/<int:test_id>", views.test_form_view, name="testForm"),
     path("author/programs", views.author_programs_view, name="authorPrograms"),
     path("author/programs/new", views.program_new_view, name="programNew"),
+    path("author/library", views.author_library_view, name="authorLibrary"),
     path("teacher/home", views.teacher_home_view, name="teacherHome"),
     path("teacher/programs", views.teacher_programs_view, name="teacherPrograms"),
     path("teacher/programs/<int:program_id>", views.list_students_view, name="listStudents"),
@@ -26,6 +27,7 @@ urlpatterns = [
     path("teacher/programs/delete/<int:program_id>/<int:student_id>", views.delete_student_program_view,
          name="deleteStudentProgram"),
     path("teacher/students", views.teacher_students_view, name="teacherStudents"),
+    path("teacher/students/progress", views.check_student_progress_view, name="studentProgress"),
     path("teacher/students/new", views.students_new_view, name="studentNew"),
     path("teacher/students/delete/<int:student_id>", views.students_delete_view, name="studentDelete"),
 ]

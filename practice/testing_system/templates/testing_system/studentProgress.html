@@ -1,0 +1,58 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static "css/font.css" %}" />
+    <link rel="stylesheet" href="{% static "css/scroll_10px.css" %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Прогресс</title>
+</head>
+<body>
+    <div class="w-screen h-screen overflow-hidden">
+        {% include "pattern/header.html" %}
+        <div class="flex flex-row h-[90%]">
+            {% include "pattern/nav.html" %}
+            <div class="w-11/12 px-10 flex flex-col items-center h-full py-3">
+                <div class="flex flex-none items-center justify-center w-4/5 h-[10%]">
+                    <div class="w-full p-4 bg-[#28448D] text-[#FFFFFF] rounded-lg text-center text-2xl font-bold select-none">
+                        Статистика ИМЯ ФАМИЛИЯ
+                    </div>
+                </div>
+                <div class="flex flex-col w-full h-[90%] p-4">
+                    <div class="flex flex-row w-full h-1/6 flex-none pr-[0.625rem]">
+                        <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-5/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Название теста</div></div>
+                        <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-3/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Пройдено</div></div>
+                        <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Дэдлайн</div></div>
+                        <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Баллы</div></div>
+                    </div>
+                    <div class="overflow-scroll flex flex-col items-center w-full h-5/6">
+                        {% for program in programs%}
+                        {% for test in program.test_set.all%}
+                        <div class="flex flex-row w-full h-1/6 flex-none my-2">
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-5/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none"> {{test.name}} </div></div>
+                            {%if test.result_set.exists == True%}
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-3/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤПройден</div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤ{{test.deadline}}</div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">  {{test.result_set.first.total}}</div></div>
+                            {%else%}
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-3/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤНе пройден</div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤ{{test.deadline}}</div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">  0</div></div>
+                            {%endif%}
+                        </div>
+                        {%endfor%}
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

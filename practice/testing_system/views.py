@@ -304,3 +304,13 @@ def delete_student_program_view(request, program_id, student_id):
         student.programs.remove(program)
         student.save()
     return HttpResponseRedirect('/teacher/programs/' + str(program_id))
+
+@login_required
+@permission_required('testing_system.add_test')
+def author_library_view(request):
+    return render(request, 'testing_system/authorLibrary.html')
+
+@login_required
+@permission_required('testing_system.add_student')
+def check_student_progress_view(request):
+    return render(request, 'testing_system/studentProgress.html')

@@ -88,14 +88,26 @@
                                         </div>
                                     </div>
                                     <div class="flex justify-end h-[15%]">
-                                        <form action="">
-                                            <button type="submit" class="transition duration-300 ease-in-out p-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-2xl font-bold select-none">
+                                        <form action="{% url 'testForm' test.id%}" class="h-full mx-2">
+                                            <button type="submit" class="h-full transition duration-300 ease-in-out px-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-2xl font-bold select-none">
                                                 <div class="flex flex-row">
                                                     <div class="px-2 flex items-center justify-center">
                                                         <img src="{% static "images/pencil.png" %}" class="h-3/4 select-none" />
                                                     </div>
                                                     <div class="flex items-center justify-center">
                                                         Редактировать
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </form>
+                                        <form action="" class="h-full mx-2">
+                                            <button type="submit" class="h-full transition duration-300 ease-in-out px-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-2xl font-bold select-none">
+                                                <div class="flex flex-row">
+                                                    <div class=" flex items-center justify-center">
+                                                        <img src="{% static "images/plus_circle.png" %}" class="rotate-45 h-5/6 select-none" />
+                                                    </div>
+                                                    <div class="flex items-center justify-center">
+                                                        Удалить
                                                     </div>
                                                 </div>
                                             </button>
