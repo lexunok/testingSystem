@@ -32,7 +32,7 @@
                                     <div class="w-[5%] rounded-2xl border-[5px] border-[#28448D] h-full mx-10 flex items-center justify-center text-2xl font-bold">
                                         № {{forloop.counter}}
                                     </div>
-                                    <form action="{% url 'studentProgress' %}" class="w-[75%] h-full mx-10">
+                                    <form action="{% url 'studentProgress' student.id %}" class="w-[75%] h-full mx-10">
                                         <button type="submit" class="w-full h-full transition duration-300 ease-in-out rounded-2xl border-[5px] border-[#28448D] hover:border-[#223A77] hover:bg-[#F2F2F2] flex items-center justify-center text-[#000000] text-2xl font-bold select-none">
                                             {{student.user.first_name}} {{student.user.last_name}}
                                         </button>

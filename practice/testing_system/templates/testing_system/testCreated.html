@@ -23,7 +23,7 @@
             <div class="w-11/12 px-10 flex flex-col py-5">
                 <div class="w-full flex flex-row  flex-none pr-2.5 h-[15%]">
                     <div class="w-1/12 h-1/2">
-                        <form action="{% url 'authorHome' %}" class="w-full h-full">
+                        <form action="{% url 'authorLibrary' %}" class="w-full h-full">
                             <button type="submit" class="transition duration-300 ease-in-out w-full h-full">
                                 <div class="flex flex-row w-full h-full">
                                     <div class="flex items-center px-1">
@@ -73,6 +73,7 @@
                                                     <div class="block overflow-hidden relative h-1/6 h-[5%]">
                                                         <input type="checkbox" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}" class="absolute w-full h-full opacity-0">
                                                         <label for="answer{{ forloop.counter }}" class="block">
+                                                            {{answer.is_correct}}
                                                             <svg width="50" height="50" viewbox="0 0 100 100">
                                                                 <rect x="30" y="20" width="50" height="50" stroke-width="5" stroke="#000000" fill="none" />
                                                                 <g transform="translate(0,-952.36222)">
@@ -100,7 +101,8 @@
                                                 </div>
                                             </button>
                                         </form>
-                                        <form action="" class="h-full mx-2">
+                                        <form method="post" action="{% url 'deleteQuestion' test.id question.id%}" class="h-full mx-2">
+                                            {%csrf_token%}
                                             <button type="submit" class="h-full transition duration-300 ease-in-out px-4 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-2xl font-bold select-none">
                                                 <div class="flex flex-row">
                                                     <div class=" flex items-center justify-center">

@@ -64,42 +64,19 @@
                             <div class="bg-[#516EB9] w-full h-full rounded-[30px] text-[#28448D] p-4 flex flex-row">
                                 <div class="w-1/2 flex flex-row h-full">
                                     <div class="w-3/4 h-full">
-                                        {% with lol=66 %}
-                                        <div class="pie animate no-round w-1/2 flex mx-auto" style="--p: {{ lol }}; --c: #28448D;">
+                                        <div class="pie animate no-round w-1/2 flex mx-auto" style="--p: {{ entireCount|floatformat:0 }}; --c: #28448D;">
                                             <div class="text-[#8097D2] font-bold text-3xl relative select-none flex items-center">
-                                                {{ lol }}%
+                                                {{ entireCount|floatformat:0 }}%
                                             </div>
                                         </div>
-                                        {% endwith %}
                                     </div>
                                     <div class="w-1/2 h-full">
                                         <div class="flex flex-col w-full h-full">
                                             <div class="font-bold text-3xl text-center select-none">
-                                                2/3
+                                                {{count}}/{{program.test_set.count}}
                                             </div>
                                             <div class="font-extrabold text-3xl text-center select-none">
                                                 тестов выполнено
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-1/2 flex flex-row h-full">
-                                    <div class="w-3/4 h-full">
-                                        {% with lol=66 %}
-                                        <div class="pie animate no-round w-1/2 flex mx-auto" style="--p: {{ lol }}; --c: #28448D;">
-                                            <div class="text-[#8097D2] font-bold text-3xl relative select-none flex items-center">
-                                                {{ lol }}%
-                                            </div>
-                                        </div>
-                                        {% endwith %}
-                                    </div>
-                                    <div class="w-1/2 h-full">
-                                        <div class="flex flex-col w-full h-full">
-                                            <div class="font-bold text-3xl text-center select-none">
-                                                2/3
-                                            </div>
-                                            <div class="font-extrabold text-3xl text-center select-none">
-                                                тестов проверено
                                             </div>
                                         </div>
                                     </div>

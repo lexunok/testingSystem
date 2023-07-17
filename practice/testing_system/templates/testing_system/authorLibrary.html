@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Создание программы</title>
+    <title>Библиотека</title>
 </head>
 <body>
     <div class="w-screen h-screen overflow-hidden">
@@ -27,22 +27,21 @@
                         </div>
                         <div class="h-[95%]">
                             <ul class="overflow-scroll h-full w-full">
-                                
-                                <li class="h-[15%] w-full p-2 flex-none flex flex-row">
-                                    <div class="w-[5%] rounded-2xl border-[5px] border-[#28448D] h-full mx-10 flex items-center justify-center text-2xl font-bold">
-                                        № 1
-                                    </div>
-                                    <div class="rounded-2xl border-[5px] border-[#28448D] flex justify-center items-center h-full w-[75%] mx-10 text-2xl font-bold">
-                                        Название теста
-                                    </div>
-                                    <form  action="" class="w-[5%] h-full">
-                                        
+                                {%for program in programs%}
+                                {%for test in program.test_set.all%}
+                                <div class="h-[15%] w-full p-2 flex-none flex flex-row">
+                                        <a href="{% url 'testCreated' test.id%}" class="rounded-2xl border-[5px] border-[#28448D] flex justify-center items-center h-full w-[75%] mx-10 text-2xl font-bold">
+                                            {{test.name}}
+                                        </a>
+                                    <form method="post" action="{% url 'deleteTest' test.id%}" class="w-[5%] h-full">
+                                        {%csrf_token%}
                                         <button type="submit" class="w-full h-full transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center text-[#FFFFFF] text-xl font-bold select-none">
                                             <img src="{% static "images/plus_circle.png" %}" class="rotate-45 h-[90%] select-none" />
                                         </button>
                                     </form>
-                                </li>
-                                
+                                </div>
+                                {%endfor%}
+                                {%endfor%}
                             </ul>
                         </div>
                     </div>

@@ -65,8 +65,18 @@ def program_description_view(request, program_id):
     program = Program.objects.get(id=program_id)
     tests = program.test_set.order_by('deadline')[0:2].all()
     title = program.name
+    student = Student.objects.get(user=request.user)
+    countTests = program.test_set.all()
+    results = Result.objects.filter(student=student).all()
+    count = 0
+    for result in results:
+        for test in countTests:
+            if result.test == test:
+                count +=1
+    entireCount = (count / program.test_set.count()) * 100
     return render(request, 'testing_system/programDescription.html',
-                  context={'program': program, 'tests': tests, 'title': title})
+                  context={'program': program, 'tests': tests, 'title': title,
+                           'count':count,'entireCount':entireCount})
 
 
 @login_required
@@ -191,8 +201,16 @@ def test_form_view(request, test_id):
 @permission_required('testing_system.view_result')
 def progress_view(request):
     student = Student.objects.get(user=request.user)
-    programs = student.programs.all()
-    return render(request, 'testing_system/progress.html', context={'programs': programs})
+    results = []
+    tests = []
+    for program in student.programs.all():
+        for test in program.test_set.all():
+            if test.result_set.filter(student=student).exists():
+                result = test.result_set.get(student=student)
+                results.append(result)
+            else:
+                tests.append(test)
+    return render(request, 'testing_system/progress.html', context={'results': results,'tests':tests})
 
 
 @login_required
@@ -308,9 +326,48 @@ def delete_student_program_view(request, program_id, student_id):
 @login_required
 @permission_required('testing_system.add_test')
 def author_library_view(request):
-    return render(request, 'testing_system/authorLibrary.html')
+    programs = Program.objects.filter(author=request.user)
+    return render(request, 'testing_system/authorLibrary.html', context={"programs":programs})
+
+
+@login_required
+@permission_required('testing_system.add_test')
+def author_delete_test_view(request, test_id):
+    if request.method == 'POST':
+        test = Test.objects.get(id=test_id)
+        test.delete()
+    return HttpResponseRedirect('/author/library')
+
+
+@login_required
+@permission_required('testing_system.add_test')
+def author_delete_program_view(request, program_id):
+    if request.method == 'POST':
+        program = Program.objects.get(id=program_id)
+        program.delete()
+    return HttpResponseRedirect('/author/programs')
+
+
+@login_required
+@permission_required('testing_system.add_test')
+def author_delete_question_view(request,test_id, question_id):
+    if request.method == 'POST':
+        question = Question.objects.get(id=question_id)
+        question.delete()
+    return HttpResponseRedirect('/author/test/' + str(test_id))
+
 
 @login_required
 @permission_required('testing_system.add_student')
-def check_student_progress_view(request):
-    return render(request, 'testing_system/studentProgress.html')
+def check_student_progress_view(request, student_id):
+    student = Student.objects.get(id=student_id)
+    results = []
+    tests = []
+    for program in student.programs.all():
+        for test in program.test_set.all():
+            if test.result_set.filter(student=student).exists():
+                result = test.result_set.get(student=student)
+                results.append(result)
+            else:
+                tests.append(test)
+    return render(request, 'testing_system/studentProgress.html', context={'student':student,'tests':tests,'results':results})

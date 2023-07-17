@@ -32,7 +32,8 @@
                             <div class="text-[#000000] text-5xl font-bold select-none rounded-2xl border-[5px] border-[#516EB9] h-full w-11/12 flex p-2 items-center justify-center">
                                 {{program.name}}
                             </div>
-                            <form action="" class="w-1/12 flex justify-center mx-2">
+                            <form method="post" action="{% url 'deleteProgram' program.id%}" class="w-1/12 flex justify-center mx-2">
+                                {%csrf_token%}
                                 <button type="submit" class="w-full transition duration-300 ease-in-out p-3 rounded-2xl bg-[#28448D] hover:bg-[#223A77] flex items-center justify-center  text-[#FFFFFF] hover:text-[#F2F2F2] text-xl font-bold select-none">
                                     <div class="px-2 flex items-center justify-center w-full">
                                         <img src="{% static "images/plus_circle.png" %}" class="w-3/5 rotate-45 select-none" />

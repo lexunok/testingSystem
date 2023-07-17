@@ -33,21 +33,21 @@
                         <div class="bg-[#516EB9] rounded-lg text-[#FFFFFF] text-3xl font-bold w-2/12 h-4/5 mx-2"><div class="w-full h-full flex justify-center items-center select-none">Баллы</div></div>
                     </div>
                     <div class="overflow-scroll flex flex-col items-center w-full h-5/6">
-                        {% for program in programs%}
-                        {% for test in program.test_set.all%}
+                        {%for test in tests%}
                         <div class="flex flex-row w-full h-1/6 flex-none my-2">
                             <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-5/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none"> {{test.name}} </div></div>
-                            {%if test.result_set.exists == True%}
-                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-3/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤПройден</div></div>
-                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤ{{test.deadline}}</div></div>
-                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">  {{test.result_set.first.total}}</div></div>
-                            {%else%}
                             <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-3/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤНе пройден</div></div>
                             <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤ{{test.deadline}}</div></div>
                             <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">  0</div></div>
-                            {%endif%}
                         </div>
                         {%endfor%}
+                        {%for result in results%}
+                        <div class="flex flex-row w-full h-1/6 flex-none my-2">
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-5/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none"> {{result.test.name}} </div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-3/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤПройден</div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">ㅤ{{result.test.deadline}}</div></div>
+                            <div class="border-[#516EB9] border-[5px] rounded-lg text-[#00000] text-2xl font-bold w-2/12 h-full mx-2"><div class="w-full h-full flex justify-center items-center select-none">  {{result.total}}</div></div>
+                        </div>
                         {%endfor%}
                     </div>
                 </div>
