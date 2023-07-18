@@ -73,7 +73,10 @@ def program_description_view(request, program_id):
         for test in countTests:
             if result.test == test:
                 count +=1
-    entireCount = (count / program.test_set.count()) * 100
+    if program.test_set.exists():
+        entireCount = (count / program.test_set.count()) * 100
+    else:
+        entireCount = 0
     return render(request, 'testing_system/programDescription.html',
                   context={'program': program, 'tests': tests, 'title': title,
                            'count':count,'entireCount':entireCount})
